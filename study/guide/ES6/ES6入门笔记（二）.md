@@ -1,16 +1,422 @@
 ## ES6入门笔记（二）
 
-本部分主要介绍四点内容，第一点是**函数**和**Symbol**，第二点是**Set**和**Map**，第三点是**Set、Map和数组的比较**，第四点是**类型转换**。
+本部分主要介绍五点内容，第一点是**对象**，第二点是**Promise对象**，第三点是**Class**，第四点是**函数**，第五点是**async函数**。
 
-### 一、函数、Symbol
+### 一、对象
+
+#### 1、常用方法
+
+> **Object.is()**
+
+**注意：** `===` 与 `Object.is()`的区别：
+
+```javascript
++0 === -0; //true
+NaN === NaN; // false
+
+Object.is(+0, -0);// false
+Object.is(NaN, NaN); // true
+
+```
+
+> **Object.assign()**
+
+`Object.assign()`用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
+
+> **Object.values()，Object.entries()**
+
+`Object.values()`返回一个数组，成员是参数对象自身的（不含继承的）所有**可遍历（enumerable）**属性的键值。
+
+`Object.entries()`返回一个数组，成员是参数对象自身的（不含继承的）所有**可遍历（enumerable）**属性的键值对数组。
+
+> **Object.fromEntries()**
+
+`Object.fromEntries()`是`Object.entries()`的逆操作，用于将一个键值对数组转为对象。
+
+#### 2、常用方法对照
+
+| **作用**     | **ES5及以前**     | **ES6**         | **underscore**          | **jQuery**         |
+| ------------- |-------------|------------- |-------------|-------------|
+| **获取所有key值** | Object.keys()**（ES5）** |  | _.keys() |  |
+| **获取所有value值** | | Object.values() | _.values() | |
+| **判断对象是否为空** | | | _.isEmpty() | $.isEmptyObject() |
+| **判断是否是对象** | | | _.isObject() | |
+| **对象拷贝** | | Object.assign()、...**（扩展运算符）** |  _.extend() | $.extend() |
+| **对象合并** | | Object.assign()、...**（扩展运算符）** | | |
+| **对象转数组** | | Object.entries() | _.pairs() | |
+| **判断是否是null** | | | _.isNull() |  |
+| **判断是否是undefined** | | | _.isUndefined() |  |
+
+#### 3、方法比较
+
+> **对象拷贝**
+
+**（1）** ES6中的`Object.assign()`方法是**浅拷贝**；
+
+```javascript
+// 对象拷贝
+// 方法一：
+let aClone = { ...a };
+// 方法二：
+let aClone = Object.assign({}, a);
+
+// 对象合并
+// 方法一：
+let ab = { ...a, ...b };
+// 方法二：
+let ab = Object.assign({}, a, b);
+```
+
+**（2）** `$.extend()`方法支持**浅拷贝**和**深拷贝**；
+
+```javascript
+var originObj = {"child": {"value": "1", "label": "2"}, "name": "3"};
+var targetObj = {};
+// 浅拷贝
+targetObj = $.extend(false, targetObj, originObj);
+
+// 修改 targetObj 中 child 中 的 value 属性
+targetObj.child.value = "4";
+
+// 输出结果：
+// originObj：
+// {"child": {"value": "4", "label": "2"}, "name": "3"};
+
+// targetObj：
+// {"child": {"value": "4", "label": "2"}, "name": "3"};
+
+// 深拷贝
+targetObj = $.extend(true, targetObj, originObj);
+
+// 修改 targetObj 中 child 中 的 value 属性
+targetObj.child.value = "4";
+
+// 输出结果：
+// originObj：
+// {"child": {"value": "1", "label": "2"}, "name": "3"};
+
+// targetObj：
+// {"child": {"value": "4", "label": "2"}, "name": "3"};
+```
+
+**（3）** `_.extend()`方法是**浅拷贝**；
+
+```javascript
+var originObj = {"child": {"value": "1", "label": "2"}, "name": "3"};
+var targetObj = {};
+// 浅拷贝
+targetObj = $.extend(targetObj, originObj);
+
+// 修改 targetObj 中 child 中 的 value 属性
+targetObj.child.value = "4";
+
+// 输出结果：
+// originObj：
+// {"child": {"value": "4", "label": "2"}, "name": "3"};
+
+// targetObj：
+// {"child": {"value": "4", "label": "2"}, "name": "3"};
+```
+
+> 对象转数组
+
+**示例：**
+
+```javascript
+// 方法一： ES6 
+const obj = { "key1": "aa", "key2": "bb" };
+Object.entries(obj);
+// [ ["key1", "aa"], ["key2", "bb"] ]
+
+// 方法二：underscore
+_.pairs({"key1": "aa", "key2": "bb"});
+// [["key1", "aa"], ["key2", "bb"]]
+```
+
+### 二、Promise对象
+
+#### 1、Promise对象的特点
+
+**（1）对象状态不受外界影响。** `Promise对象`有三种状态：`pending`（进行中）、`fulfilled`（已成功）、`rejected`（已失败）。
+
+**（2）一旦状态改变，就不会再变。**
+
+#### 2、基本用法
+
+**示例：**
+
+```javascript
+const getJSON = function(url) {
+  const promise = new Promise(function(resolve, reject){
+    const handler = function() {
+      if (this.readyState !== 4) {
+        return;
+      }
+      if (this.status === 200) {
+        resolve(this.response);
+      } else {
+        reject(new Error(this.statusText));
+      }
+    };
+    const client = new XMLHttpRequest();
+    client.open("GET", url);
+    client.onreadystatechange = handler;
+    client.responseType = "json";
+    client.setRequestHeader("Accept", "application/json");
+    client.send();
+
+  });
+
+  return promise;
+};
+
+getJSON("/posts.json").then(function(json) {
+  console.log('Contents: ' + json);
+}, function(error) {
+  console.error('出错了', error);
+});
+```
+
+#### 3、常用方法
+
+> **（1）`then`方法**
+
+`then`方法的第一个参数是`resolved`状态的回调函数，第二个参数（可选）是`rejected`状态的回调函数。
+
+`then`方法返回的是一个新的`Promise`实例（注意，不是原来那个`Promise`实例）。因此可以采用链式写法，即`then`方法后面再调用另一个`then`方法。
+
+**示例：**
+
+```javascript
+getJSON("/post/1.json").then(
+  post => getJSON(post.commentURL)
+).then(
+  comments => console.log("resolved: ", comments),
+  err => console.log("rejected: ", err)
+);
+```
+
+> **（2）`catch`方法**
+
+`catch()`方法是`.then(null, rejection)`或`.then(undefined, rejection)`的别名，用于指定发生错误时的回调函数。
+
+`Promise` 对象的错误具有**“冒泡”性质**，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个`catch`语句捕获。
+
+**示例：**
+
+```javascript
+// bad
+promise
+  .then(function(data) {
+    // success
+  }, function(err) {
+    // error
+  });
+
+// good
+promise
+  .then(function(data) { //cb
+    // success
+  })
+  .catch(function(err) {
+    // error
+  });
+```
+
+> **（3）`finally`方法（ES2018）**
+
+`finally()`方法用于指定不管 `Promise` 对象最后状态如何，都会执行的操作。
+
+**示例：**
+```javascript
+promise
+.finally(() => {
+  // 语句
+});
+
+// 等同于
+promise
+.then(
+  result => {
+    // 语句
+    return result;
+  },
+  error => {
+    // 语句
+    throw error;
+  }
+);
+```
+
+> **（4）`all`方法**
+
+`all()`方法用于将多个 `Promise` 实例，包装成一个新的 `Promise` 实例。
+
+**示例：**
+
+```javascript
+// 生成一个Promise对象的数组
+const promises = [2, 3, 5, 7, 11, 13].map(function (id) {
+  return getJSON('/post/' + id + ".json");
+});
+
+Promise.all(promises).then(function (posts) {
+  // ...
+}).catch(function(reason){
+  // ...
+});
+```
+
+> **（5）`race`方法**
+
+`race()`方法同样是将多个 `Promise` 实例，包装成一个新的 `Promise` 实例。
+
+**示例：**
+
+```javascript
+const p = Promise.race([
+  fetch('/resource-that-may-take-a-while'),
+  new Promise(function (resolve, reject) {
+    setTimeout(() => reject(new Error('request timeout')), 5000)
+  })
+]);
+
+p
+.then(console.log)
+.catch(console.error);
+```
+
+> **（6）`allSettled`方法**
+
+`allSettled()`方法接受一组 `Promise` 实例作为参数，包装成一个新的 `Promise` 实例。只有等到所有这些参数实例都返回结果，不管是`fulfilled`还是`rejected`，包装实例才会结束。该方法由 ES2020 引入。
+
+**注意：** 当不关心异步操作的结果，只关心这些操作有没有结束时，可以使用该方法。
+
+**示例：**
+
+```javascript
+const resolved = Promise.resolve(42);
+const rejected = Promise.reject(-1);
+
+const allSettledPromise = Promise.allSettled([resolved, rejected]);
+
+allSettledPromise.then(function (results) {
+  console.log(results);
+});
+// [
+//    { status: 'fulfilled', value: 42 },
+//    { status: 'rejected', reason: -1 }
+// ]
+```
+
+> **（7）`try`方法**
+
+**示例：**
+
+```javascript
+Promise.try(() => database.users.get({id: userId}))
+  .then(...)
+  .catch(...)
+```
+
+### 三、Class
+
+#### 1、constructor 方法
+
+`constructor`方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。一个类必须有`constructor`方法，如果没有显式定义，一个空的`constructor`方法会被默认添加。
+
+**示例：**
+
+```javascript
+class Point {
+}
+
+// 等同于
+class Point {
+  constructor() {}
+}
+```
+
+#### 2、取值函数（getter）和存值函数（setter）
+
+与 ES5 一样，在“类”的内部可以使用`get`和`set`关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为。
+
+#### 3、属性表达式
+
+类的属性名，可以采用表达式。
+
+**示例：**
+
+```javascript
+let methodName = 'getArea';
+
+class Square {
+  constructor(length) {
+    // ...
+  }
+
+  [methodName]() {
+    // ...
+  }
+}
+```
+
+#### 4、extends实现继承
+
+**示例：**
+
+```javascript
+class Point {
+}
+
+class ColorPoint extends Point {
+}
+```
+
+#### 5、super关键字
+
+**示例：**
+
+```javascript
+class A {}
+
+class B extends A {
+  constructor() {
+    super();
+  }
+}
+```
+
+> **注意：**
+
+**（1）** 与 ES5 一样，类的所有实例共享一个**原型对象**。
+
+**（2）** 类和模块的内部，默认就是**严格模式**，所以不需要使用use strict指定运行模式。
+
+**（3）** 类不存在**变量提升**（hoist），这一点与 ES5 完全不同。
+
+**（4）** `name`属性总是返回紧跟在`class`关键字后面的类名。
+
+**示例：**
+
+```javascript
+class Point {}
+Point.name // "Point"
+```
+
+**（5）** ES5 的继承，实质是先创造子类的实例对象this，然后再将父类的方法添加到this上面（`Parent.apply(this)`）。ES6 的继承机制完全不同，实质是先将父类实例对象的属性和方法，加到this上面（所以必须先调用`super`方法），然后再用子类的构造函数修改this。
+
+**（6）** ES6 要求，子类的构造函数必须执行一次`super`函数。
+
+### 四、函数
 
 #### 1、函数
 
 > **函数参数的默认值** 
 
-（1）参数变量是默认声明的，所以不能用`let`或`const`再次声明。
+**（1）** 参数变量是默认声明的，所以不能用`let`或`const`再次声明。
 
-（2）利用参数默认值，可以指定某一个参数不得省略，如果省略就抛出一个错误。
+**（2）** 利用参数默认值，可以指定某一个参数不得省略，如果省略就抛出一个错误。
 
 **示例：**
 ```javascript
@@ -25,7 +431,7 @@ log('Hello', ''); // Hello
 
 > **rest参数**
 
-ES6 引入 rest 参数（形式为`...变量名`），用于获取函数的多余参数，这样就不需要使用arguments对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。
+ES6 引入 `rest` 参数（形式为`...变量名`），用于获取函数的多余参数，这样就不需要使用`arguments`对象了。`rest` 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。
 
 rest 参数之后不能再有其他参数（即只能是最后一个参数），否则会报错。
 
@@ -48,13 +454,13 @@ ES6 允许使用“箭头”（`=>`）定义函数。
 
 **箭头函数有几个使用注意点：**
 
-（1）函数体内的this对象，就是**定义时所在的对象**，而不是使用时所在的对象。
+**（1）** 函数体内的this对象，就是**定义时所在的对象**，而不是使用时所在的对象。
 
-（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+**（2）** 不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
 
-（3）不可以使用`arguments`对象，该对象在函数体内不存在。如果要用，可以用`rest`参数代替。
+**（3）** 不可以使用`arguments`对象，该对象在函数体内不存在。如果要用，可以用`rest`参数代替。
 
-（4）不可以使用`yield`命令，因此箭头函数不能用作`Generator`函数。
+**（4）** 不可以使用`yield`命令，因此箭头函数不能用作`Generator`函数。
 
 **示例1：**
 
@@ -116,354 +522,143 @@ setTimeout(() => console.log('s2: ', timer.s2), 3100);
 
 **箭头函数可以让this指向固定化，这种特性很有利于封装回调函数。**
 
+### 五、async函数
 
-#### 2、Symbol
+#### 1、基本用法
 
-> **基本语法**
-
-（1）`Symbol`函数的参数只是表示对当前 `Symbol` 值的描述，因此**相同参数**的`Symbol`函数的返回值是不相等的。
+`async`函数返回一个 Promise 对象，可以使用`then`方法添加回调函数。当函数执行的时候，一旦遇到`await`就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。
 
 **示例：**
 
 ```javascript
-// 没有参数的情况
-let s1 = Symbol();
-let s2 = Symbol();
-
-s1 === s2; // false
-
-// 有参数的情况
-let s1 = Symbol('foo');
-let s2 = Symbol('foo');
-
-s1 === s2 // false
-```
-
-（2）**应用场景**：消除魔术字符串；为对象定义一些非私有的、但又希望只用于内部的方法。
-
-**注：**魔术字符串指的是，在代码之中多次出现、与代码形成强耦合的某一个具体的字符串或者数值。
-
-**示例1：**
-
-```javascript
-// 原先的写法：
-// const shapeType = {
-//   triangle: 'Triangle'
-// };
-
-// 新的写法：
-const shapeType = {
-  triangle: Symbol()
-};
-
-function getArea(shape, options) {
-  let area = 0;
-  switch (shape) {
-    case shapeType.triangle:
-      area = .5 * options.width * options.height;
-      break;
-  }
-  return area;
+// 方法一：
+function timeout(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
-getArea(shapeType.triangle, { width: 100, height: 100 });
+async function asyncPrint(value, ms) {
+  await timeout(ms);
+  console.log(value);
+}
+
+asyncPrint('hello world', 50);
+
+// 方法二：
+async function timeout(ms) {
+  await new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function asyncPrint(value, ms) {
+  await timeout(ms);
+  console.log(value);
+}
+
+asyncPrint('hello world', 50);
 ```
 
-**示例2：**
+#### 2、使用形式
 
 ```javascript
-let size = Symbol('size');
+// 函数声明
+async function foo() {}
 
-class Collection {
+// 函数表达式
+const foo = async function () {};
+
+// 对象的方法
+let obj = { async foo() {} };
+obj.foo().then(...);
+
+// Class 的方法
+class Storage {
   constructor() {
-    this[size] = 0;
+    this.cachePromise = caches.open('avatars');
   }
 
-  add(item) {
-    this[this[size]] = item;
-    this[size]++;
-  }
-
-  static sizeOf(instance) {
-    return instance[size];
+  async getAvatar(name) {
+    const cache = await this.cachePromise;
+    return cache.match(`/avatars/${name}.jpg`);
   }
 }
 
-let x = new Collection();
-Collection.sizeOf(x); // 0
+const storage = new Storage();
+storage.getAvatar('jake').then(…);
 
-x.add('foo');
-Collection.sizeOf(x); // 1
-
-Object.keys(x); // ['0']
-Object.getOwnPropertyNames(x); // ['0']
-Object.getOwnPropertySymbols(x) // [Symbol(size)]
+// 箭头函数
+const foo = async () => {};
 ```
 
-> **常用方法**
+#### 3、基本语法
 
-**（1）`Object.getOwnPropertySymbols()`**
+> **返回 Promise 对象**
 
- `Object.getOwnPropertySymbols()`用来获取所有 `Symbol` 属性名。
+> **Promise 对象的状态变化**
 
-**（2）`Symbol.for()`**
+> **await 命令**
+>
+> **错误处理**
 
-`Symbol.for()`接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建一个以该字符串为名称的 Symbol 值，并将其注册到全局。
+#### 4、注意点
 
-**示例1：**
-
-```javascript
-let s1 = Symbol.for('foo');
-let s2 = Symbol.for('foo');
-
-s1 === s2 // true
-```
-
-**示例2：**
-
-```javascript
-Symbol.for("bar") === Symbol.for("bar");  // true
-
-Symbol("bar") === Symbol("bar");  // false
-```
-
-**（3）`Symbol.keyfor()`**
-
-`Symbol.keyFor()`返回一个已登记的 Symbol 类型值的key。
-
-**示例1：**
-
-```javascript
-let s1 = Symbol.for("foo");
-Symbol.keyFor(s1); // "foo"
-
-let s2 = Symbol("foo");
-Symbol.keyFor(s2) // undefined
-```
-
-### 二、Set、Map
-#### 1、Set
-
-> **应用场景**
-
- **（1）数组去重、字符串去重**
+**（1）** await命令后面的Promise对象，运行结果可能是rejected，所以最好把await命令放在try...catch代码块中。
 
 **示例：**
 
 ```javascript
-var array = [1, 2, 3, 4, 5, 5, 6];
-[...new Set(array)]; // [1, 2, 3, 4, 5, 6]
-
-[...new Set('ababbc')].join('') // “abc”
-```
-
- **（2）实现数组的并集、交集和差集**
-
-**示例：**
-
-```javascript
-let a = new Set([1, 2, 3]);
-let b = new Set([4, 3, 2]);
-
-// 并集
-let union = new Set([...a, ...b]);
-// Set {1, 2, 3, 4}
-
-// 交集
-let intersect = new Set([...a].filter(x => b.has(x)));
-// set {2, 3}
-
-// （a 相对于 b 的）差集
-let difference = new Set([...a].filter(x => !b.has(x)));
-// Set {1}
-```
-
-> **常用方法**
-
-**（1）操作方法：**
-
-`Set.prototype.add(value)`：添加某个值，返回 Set 结构本身。
-
-`Set.prototype.delete(value)`：删除某个值，返回一个布尔值，表示删除是否成功。
-
-`Set.prototype.has(value)`：返回一个布尔值，表示该值是否为Set的成员。
-
-`Set.prototype.clear()`：清除所有成员，没有返回值。
-
-**（2）遍历方法：**
-
-`Set.prototype.keys()`：返回键名的遍历器
-
-`Set.prototype.values()`：返回键值的遍历器
-
-`Set.prototype.entries()`：返回键值对的遍历器
-
-`Set.prototype.forEach()`：使用回调函数遍历每个成员
-
-#### 2、Map
-
-> **基本语法**
-
-**示例：**
-
-```javascript
-const map = new Map();
-
-map
-.set(1, 'aaa')
-.set(1, 'bbb');
-
-map.get(1) // "bbb"
-```
-
-（1）只有对**同一个对象的引用**，Map 结构才将其视为同一个键。（2）Map 的键实际上是跟**内存地址**绑定的，只要内存地址不一样，就视为两个键。
-
-> **常用方法**
-
-**（1）属性和操作方法：**
-
-`size`
-
-`Map.prototype.set(key, value)`
-
-`Map.prototype.get(key)`
-
-`Map.prototype.has(key)`
-
-`Map.prototype.delete(key)`
-
-`Map.prototype.clear()`
-
-**（2）遍历方法：**
-
-`Map.prototype.keys()`：返回键名的遍历器。
-
-`Map.prototype.values()`：返回键值的遍历器。
-
-`Map.prototype.entries()`：返回所有成员的遍历器。
-
-`Map.prototype.forEach()`：遍历 Map 的所有成员。
-
-### 三、Set、Map和数组的比较
-
-|      | **Set**     | **Map**         | **数组**          |
-| ------------- |-------------|------------- |-------------|
-| **存放内容** | 值 | 键值对 |  值 |
-| **是否重复** | 不重复 | 不重复 | 可以重复 |
-| **添加** | set(key, value) | set(key, value)  | push()、unshift() | 
-| **删除** | delete(value) | delete(key)  | splice() |
-| **查询某个值** | has(value) | get(key)、has(key) | includes() |
-| **清除** | clear() | clear() | |
-| **获取keys** | keys() | keys() | keys() |
-| **获取values** | values() | values() | values() |
-| **获取entries** | entries() | entries() | entries() |
-| **遍历** | forEach() | forEach() | forEach() |
-
-### 四、类型转换
-
-> **（1）数组转对象**
-
-```javascript
-Object.fromEntries([
-  ["key1", "key2"],
-  ["aa", "bb"]
-]);
-// { key1: "aa", key2: "bb" }
-```
-
-> **（2）数组转Map**
-
-```javascript
-new Map([
-  [true, 7],
-  [{foo: 3}, ['abc']]
-])
-// Map {
-//   true => 7,
-//   Object {foo: 3} => ['abc']
-// }
-```
-
-> **（3）对象转数组**
-
-```javascript
-const obj = { "key1": "aa", "key2": "bb" };
-Object.entries(obj);
-// [ ["key1", "aa"], ["key2", "bb"] ]
-```
-
-> **（4）对象转Map**
-
-```javascript
-let obj = {"a":1, "b":2};
-let map = new Map(Object.entries(obj));
-```
-
-> **（5）Map转数组**
-
-```javascript
-const myMap = new Map()
-  .set(true, 7)
-  .set({foo: 3}, ['abc']);
-[...myMap]
-// [ [ true, 7 ], [ { foo: 3 }, [ 'abc' ] ] ]
-```
-
-> **（6）Map转对象**
-
-```javascript
-function strMapToObj(strMap) {
-  let obj = Object.create(null);
-  for (let [k,v] of strMap) {
-    obj[k] = v;
+async function myFunction() {
+  try {
+    await somethingThatReturnsAPromise();
+  } catch (err) {
+    console.log(err);
   }
-  return obj;
 }
 
-const myMap = new Map()
-  .set('yes', true)
-  .set('no', false);
-strMapToObj(myMap)
-// { yes: true, no: false }
+// 另一种写法
+async function myFunction() {
+  await somethingThatReturnsAPromise()
+  .catch(function (err) {
+    console.log(err);
+  });
+}
 ```
 
-> **（7）Map转JSON**
+**（2）** 多个await命令后面的异步操作，如果不存在继发关系，最好让它们同时触发。
+
+**示例：**
 
 ```javascript
-function strMapToJson(strMap) {
-  return JSON.stringify(strMapToObj(strMap));
-}
+// 写法一
+let [foo, bar] = await Promise.all([getFoo(), getBar()]);
 
-let myMap = new Map().set('yes', true).set('no', false);
-strMapToJson(myMap);
-// '{"yes":true,"no":false}'
-
-function mapToArrayJson(map) {
-  return JSON.stringify([...map]);
-}
-
-let myMap = new Map().set(true, 7).set({foo: 3}, ['abc']);
-mapToArrayJson(myMap)
-// '[[true,7],[{"foo":3},["abc"]]]'
+// 写法二
+let fooPromise = getFoo();
+let barPromise = getBar();
+let foo = await fooPromise;
+let bar = await barPromise;
 ```
 
-> **（8）JSON转Map**
+**（3）** await命令只能用在async函数之中，如果用在普通函数，就会报错。
+
+**示例：**
 
 ```javascript
-function jsonToStrMap(jsonStr) {
-  return objToStrMap(JSON.parse(jsonStr));
+async function dbFuc(db) {
+  let docs = [{}, {}, {}];
+
+  // 报错
+  docs.forEach(function (doc) {
+    await db.post(doc);
+  });
 }
-
-jsonToStrMap('{"yes": true, "no": false}');
-// Map {'yes' => true, 'no' => false}
-
-function jsonToMap(jsonStr) {
-  return new Map(JSON.parse(jsonStr));
-}
-
-jsonToMap('[[true,7],[{"foo":3},["abc"]]]')
-// Map {true => 7, Object {foo: 3} => ['abc']}
 ```
+
+**（4）** `async` 函数可以保留运行堆栈。
+
+**注：** 笔记中的示例代码来自于[ES6入门教程](https://es6.ruanyifeng.com/)，后面会再对笔记中的示例代码进行补充完善和调整。
 
 **参考：**
 
