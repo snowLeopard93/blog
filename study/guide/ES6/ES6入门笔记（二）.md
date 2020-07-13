@@ -2,6 +2,8 @@
 
 本部分主要介绍五点内容，第一点是**对象**，第二点是**Promise对象**，第三点是**Class**，第四点是**函数**，第五点是**async函数**。
 
+其中**函数**从**函数的定义形式**、**函数的调用方式**、**函数参数的默认值、rest参数、箭头函数**等三个方面进行介绍。
+
 ### 一、对象
 
 #### 1、常用方法
@@ -410,7 +412,72 @@ Point.name // "Point"
 
 ### 四、函数
 
-#### 1、函数
+#### 1、函数的定义方式
+
+> **命名函数**
+
+```javascript
+ function fun() {}
+```
+
+> **匿名函数**
+
+```javascript
+var fun = function() {}
+```
+> **new Function()**
+
+```javascript
+var fun = new Function('a', 'b', 'console.log(a + b)');
+```
+
+#### 2、函数的调用方式
+
+> **普通函数**
+
+```javascript
+function fun() {};
+fun();
+```
+> **对象的方法**
+
+```javascript
+var obj = {
+    play: function() {}
+};
+
+obj.play();
+```
+> **构造函数**
+
+```javascript
+function Star() {}
+
+new Star();
+```
+> **绑定事件函数**
+
+```javascript
+var btn = ...;
+btn.onclick - function() {};
+
+```
+
+> **定时器函数**
+
+```javascript
+setInterval(function(){}, 5000);
+```
+
+> **立即执行函数**
+
+```javascript
+(function(){
+    console.log("aaa");
+})()
+```
+
+#### 3、函数参数的默认值、rest参数和箭头函数
 
 > **函数参数的默认值** 
 
