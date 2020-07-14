@@ -318,23 +318,23 @@ map.get(1) // "bbb"
 
 #### 1. 数组相关
 
-| **作用**          | **ES5及以前** |  **ES6**         | **underscore**          | **jQuery**         |
-| ------------- |-------------|------------- |-------------|-------------|
-| **遍历数组** | forEach()**（ES5）** | entries()、keys()、values() | _.each() | $.each() |
-| **判断数组中是否包含指定值** | indexOf() | includes() **（ES2016）** |  |
-| **查询数组中指定值的第一条数据** | | find() | _.findWhere() | 
-| **判断数组中是否存在符合条件的数据** | some()**（ES5）** | |  |
-| **查询数组中符合条件的数据** | filter()**（ES5）** |  |  _.where()、  _.filter()  | $.grep() |
-| **对数组进行排序** | sort() | sort() | _.sortBy() | |
-| **查找数组中的最大值** | |  | _.max() | |
-| **查找数组中的最小值** | | | _.min() | |
-| **数组拷贝** | | ...**（扩展运算符）** | _.extend() | $.extend() |
-| **判断是否是数组** | Array.isArray() |  | _.isArray() | $.isArray() |
-| **数组做并集** | concat() | ...**（扩展运算符）** | _.union() | $.merge() |
-| **数组去重** | |  | _.uniq() | |
-| **获取数组中指定值的下标** | indexOf() | findIndex() | _.indexOf() | |
-| **数组拉平** | | flat() | _.flatten() | |
-| **数组转对象** | | Object.fromEntries() | _.object() | |
+| **作用**          | **ES5及以前** |  **ES6**         | **underscore**          | **jQuery**         |  **其他** |
+| ------------- |-------------|------------- |-------------|-------------|-------------|
+| **遍历数组** | forEach()**（ES5）** | entries()、keys()、values() | _.each() | $.each() | |
+| **判断数组中是否包含指定值** | indexOf() | includes() **（ES2016）** |  | |
+| **查询数组中指定值的第一条数据** | | find() | _.findWhere() |  |
+| **判断数组中是否存在符合条件的数据** | some()**（ES5）** | |  | |
+| **查询数组中符合条件的数据** | filter()**（ES5）** |  |  _.where()、  _.filter()  | $.grep() | |
+| **对数组进行排序** | sort() | sort() | _.sortBy() | | |
+| **查找数组中的最大值** | |  | _.max() | | Math.max.apply() |
+| **查找数组中的最小值** | | | _.min() | | Math.min.apply() |
+| **数组拷贝** | | ...**（扩展运算符）** | _.extend() | $.extend() | |
+| **判断是否是数组** | Array.isArray() |  | _.isArray() | $.isArray() | |
+| **数组做并集** | concat() | ...**（扩展运算符）** | _.union() | $.merge() | |
+| **数组去重** | |  | _.uniq() | | |
+| **获取数组中指定值的下标** | indexOf() | findIndex() | _.indexOf() | | |
+| **数组拉平** | | flat() | _.flatten() | | |
+| **数组转对象** | | Object.fromEntries() | _.object() | | |
 
 #### 2. 字符串相关
 
