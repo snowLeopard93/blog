@@ -8,6 +8,9 @@
 	- [ES6入门笔记（一）](guide/ES6/ES6入门笔记.md)
 	- [ES6入门笔记（二）](guide/ES6/ES6入门笔记（二）.md)
 	- [ES6入门笔记（三）](guide/ES6/ES6入门笔记（三）.md)
+
+- ES6进阶
+    - [ES6进阶笔记（一）函数](guide/ES6/ES6进阶笔记（一）函数.md)
 		
 - Chrome调试及性能优化
     - [Chrome调试](guide/Chrome调试及性能优化/Chrome调试.md)
