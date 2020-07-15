@@ -66,6 +66,10 @@ function fn() {
 fn.bind(a);
 ```
 
-**参考：**：
+**推荐：**
+
+[你还没搞懂this？](https://github.com/ljianshu/Blog/issues/7)
+
+**参考：**
 
 [2019全新javaScript进阶面向对象ES6之《函数内部的this指向》](https://www.bilibili.com/video/BV1Kt411w7MP?p=53)
