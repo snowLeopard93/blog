@@ -14,6 +14,7 @@
 		
 - Chrome调试及性能优化
     - [Chrome调试](guide/Chrome调试及性能优化/Chrome调试.md)
+    - [内存泄漏](guide/Chrome调试及性能优化/内存泄漏.md)
 	
 - 其他
     - [页面间通信](guide/其他/页面间通信.md)
