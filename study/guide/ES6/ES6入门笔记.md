@@ -386,9 +386,25 @@ map.get(1) // "bbb"
 
 > **（2）判断数组中是否存在符合条件的数据、查询出数组中符合条件的数据**
 
-ES5中的`some()`方法返回的是一个布尔值；ES5中的`filter()`方法返回的是一个数组（里面是所有满足条件的元素）；
+ES5中的`some()`方法返回的是一个**布尔值**；ES5中的`filter()`方法返回的是一个数组（里面是所有满足条件的元素）；
 
 **注：** ES5中的`some()`方法找到符合条件的数据之后就停止遍历；ES5中的`filter()`方法则会遍历所有数据；
+
+**示例：**
+
+```javascript
+var arr = ["aa", "bb", "cc"];
+var findFlag = arr.some(function(item){
+    return item === "aa";
+});
+// true
+
+var arr = ["aa", "bb", "cc"];
+var obj = arr.filter(function(item){
+    return item == "aa";
+})
+// ["aa"]
+```
 
 > **（3）数组合并**
 
