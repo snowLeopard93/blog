@@ -42,4 +42,6 @@
 
 **Ctrl-shift-delete** 清除缓存
 
+**Shift-Esc** 打开Chrome任务管理器
+
 **待补充~~**
