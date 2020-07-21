@@ -6,7 +6,10 @@
 
 - ES6进阶
     - [ES6进阶笔记（一）函数](guide/ES6/ES6进阶笔记（一）函数.md)
-		
+
+- Vue
+    - [Vue入门笔记（一）指令](guide/Vue/Vue入门笔记（一）指令.md)		
+ 
 - Chrome调试及性能优化
     - [Chrome调试](guide/Chrome调试及性能优化/Chrome调试.md)
     - [内存泄漏](guide/Chrome调试及性能优化/内存泄漏.md)
