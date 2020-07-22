@@ -6,6 +6,7 @@
 
 - ES6进阶
     - [ES6进阶笔记（一）函数](guide/ES6/ES6进阶笔记（一）函数.md)
+    - [ES6进阶笔记（一）Module](guide/ES6/ES6进阶笔记（二）Module.md)
 
 - Vue
     - [Vue入门笔记（一）指令](guide/Vue/Vue入门笔记（一）指令.md)		

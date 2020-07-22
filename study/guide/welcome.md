@@ -5,12 +5,13 @@
 当前目录结构为：
  ```markdown
 - ES6
-	- [ES6入门笔记（一）](guide/ES6/ES6入门笔记.md)
+	- [ES6入门笔记（一）](guide/ES6/ES6入门笔记（一）.md)
 	- [ES6入门笔记（二）](guide/ES6/ES6入门笔记（二）.md)
 	- [ES6入门笔记（三）](guide/ES6/ES6入门笔记（三）.md)
 
 - ES6进阶
     - [ES6进阶笔记（一）函数](guide/ES6/ES6进阶笔记（一）函数.md)
+    - [ES6进阶笔记（一）Module](guide/ES6/ES6进阶笔记（二）Module.md)
 
 - Vue
     - [Vue入门笔记（一）指令](guide/Vue/Vue入门笔记（一）指令.md)		
