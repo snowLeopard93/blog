@@ -1,14 +1,43 @@
-## Vue入门笔记（一）指令
+## Vue入门笔记（一）
 
-### 一、常用指令
+本部分主要介绍两点内容，第一点是**基本概念**，第二点是**常用指令**。 
 
-#### 1、基本概念
+### 一、基本概念
 
-> **指令**
+#### 1、Vue实例
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    msg: 'Hello Vue'
+  },
+  methods: {
+    say: function() {
+        console.log("aaa");
+    },
+    write: function() {
+        console.log("bbbb");
+    }
+  }
+})
+```
+
+**完整示例戳：**[0.HelloVue.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/0.HelloVue.html)
+
+#### 2、指令
 
 `指令 (Directives)` 是带有 `v-` 前缀的特殊 `attribute`。指令 `attribute` 的值预期是**单个 JavaScript 表达式** (`v-for` 是例外情况，稍后我们再讨论)。指令的职责是，**当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM**。
 
-#### 2、常用指令介绍
+#### 3、生命周期钩子
+
+**beforeCreate** -> `created` -> **beforeMount** -> `mounted` -> **beforeUpdate** -> `updated` -> **beforeDestroy** -> `destroyed`
+
+[Vue生命周期图示](https://cn.vuejs.org/v2/guide/instance.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA)
+
+### 二、常用指令
+
+#### 1、常用指令介绍
 
 > **v-if、v-else、v-else-if**
 
@@ -130,7 +159,7 @@
 
 `v-cloak`用于解决插值表达式闪烁的问题。
 
-### 二、Vue 和 AngularJs 常用指令对比
+#### 2、Vue 和 AngularJs 常用指令对照
 
 | **作用**          | **Vue** |  **AngularJS**         |
 | ------------- |-------------|------------- |
@@ -144,6 +173,10 @@
 | **点击** | v-bind:click | ng-click |
 
 **持续更新中**~~
+
+**推荐：**
+
+[Vue API-指令](https://cn.vuejs.org/v2/api/#%E6%8C%87%E4%BB%A4)
 
 **参考：**
 
