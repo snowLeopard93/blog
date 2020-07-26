@@ -23,7 +23,7 @@ new Vue({
 })
 ```
 
-**完整示例戳：**[0.HelloVue.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/0.HelloVue.html)
+**完整示例戳：**[0.HelloVue.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/basicDirectives/0.HelloVue.html)
 
 #### 2、指令
 
@@ -62,7 +62,7 @@ new Vue({
 </div>
 ```
 
-**完整示例戳：**[1.v-if.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/1.v-if.html)
+**完整示例戳：**[1.v-if.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/basicDirectives/1.v-if.html)
 
 > **v-show**
 
@@ -78,19 +78,19 @@ new Vue({
 
 一般来说，`v-if` 有更高的**切换开销**，而 `v-show` 有更高的**初始渲染开销**。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。
 
-**完整示例戳：**[2.v-show.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/2.v-show.html)
+**完整示例戳：**[2.v-show.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/basicDirectives/2.v-show.html)
 
 > **v-for**
 
 `v-for`基于一个数组来渲染一个列表。
 
-**完整示例戳：**[3.v-for.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/3.v-for.html)
+**完整示例戳：**[3.v-for.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/basicDirectives/3.v-for.html)
 
 > **v-model**
 
 用于在表单`<input>`、`<textarea>` 及 `<select>` 元素上创建双向数据绑定。
 
-**完整示例戳：**[4.v-model.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/4.v-model.html)
+**完整示例戳：**[4.v-model.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/basicDirectives/4.v-model.html)
 
 > **v-bind**
 
@@ -130,7 +130,7 @@ new Vue({
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
-**完整示例戳：**[5.v-bind.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/5.v-bind.html)
+**完整示例戳：**[5.v-bind.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/basicDirectives/5.v-bind.html)
 
 > **v-on**
 
@@ -147,13 +147,13 @@ new Vue({
 <a @[event]="doSomething"> ... </a>
 ```
 
-**完整示例戳：**[6.v-on.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/6.v-on.html)
+**完整示例戳：**[6.v-on.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/basicDirectives/6.v-on.html)
 
 > **v-text、v-html**
 
 `v-text`将数据解释为普通文本，`v-html`将数据解释为HTML代码。
 
-**完整示例戳：**[7.v-html.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/7.v-html.html)
+**完整示例戳：**[7.v-html.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/basicDirectives/7.v-html.html)
 
 > **v-cloak**
 
