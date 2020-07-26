@@ -141,11 +141,39 @@ function notStrict() {
 
 #### 3、export、import命令
 
-#### 4、export default命令
+模块功能主要由两个命令构成：`export`和`import`。`export`命令用于规定模块的对外接口，`import`命令用于输入其他模块提供的功能。
 
-#### 5、模块继承
+**（1）export**
 
-#### 6、import()
+> **输出变量**
+
+**示例：**
+
+```javascript
+var firstName = 'Michael';
+var lastName = 'Jackson';
+var year = 1958;
+
+export { firstName, lastName, year };
+```
+
+> **输出函数**
+
+**示例：**
+
+```javascript
+export function multiply(x, y) {
+  return x * y;
+};
+```
+
+**（2）import**
+
+**示例：**
+
+```javascript
+import { firstName, lastName, year } from './profile.js';
+```
 
 ### 二、比较
 
