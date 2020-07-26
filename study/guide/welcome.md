@@ -14,7 +14,8 @@
     - [ES6进阶笔记（二）Module](guide/ES6/ES6进阶笔记（二）Module.md)
 
 - Vue
-    - [Vue入门笔记（一）](guide/Vue/Vue入门笔记（一）.md)		
+    - [Vue入门笔记（一）](guide/Vue/Vue入门笔记（一）.md)	
+    - [Vue入门笔记（二）](guide/Vue/Vue入门笔记（二）.md)	
  
 - Chrome调试及性能优化
     - [Chrome调试](guide/Chrome调试及性能优化/Chrome调试.md)
