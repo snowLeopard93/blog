@@ -17,9 +17,9 @@
 
 **1.2 进阶**
 
-（1）**函数：**this
+（1）**函数：** this
 
-（2）**Module：**概述、严格模式、import和export
+（2）**Module：** 概述、严格模式、import和export
 
 **2. Chrome调试及性能优化**
 
