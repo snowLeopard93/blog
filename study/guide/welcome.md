@@ -21,7 +21,9 @@
 - Chrome调试及性能优化
     - [Chrome调试](guide/Chrome调试及性能优化/Chrome调试.md)
     - [内存泄漏](guide/Chrome调试及性能优化/内存泄漏.md)
-	
+
+- Git
+    - [Git常用命令速查](guide/Git/Git常用命令速查.md)	
 - 其他
     - [页面间通信及跨域](guide/其他/页面间通信及跨域.md)
 
