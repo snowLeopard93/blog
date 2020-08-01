@@ -19,6 +19,10 @@ Vue.component('hello-vue', {
 
 #### 2、使用新组件
 
+**注意：**
+
+**（1）** `data`必须是一个函数； 
+
 **示例：**
 
 ```html
@@ -41,3 +45,34 @@ Vue.component('hello-vue', {
 ```
 
 **完整示例戳：**[1.count.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/component/1.count.html)
+
+#### 3、通过 Prop 向子组件传递数据
+
+**示例：**
+
+```html
+<div id="app">
+    <blog-post v-for="item in list"
+               v-bind:key="item.id"
+               v-bind:title="item.title">
+    </blog-post>
+</div>
+<script>
+    Vue.component('blog-post', {
+        props: ['title'],
+        template: '<h3>{{ title }}</h3>'
+    });
+    new Vue({
+        el: '#app',
+        data: {
+            list: [
+                { id: 1, title: 'My journey with Vue' },
+                { id: 2, title: 'Blogging with Vue' },
+                { id: 3, title: 'Why Vue is so fun' }
+            ]
+        }
+    })
+</script>
+```
+
+**完整示例戳：**[2.prop.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/component/2.prop.html)
