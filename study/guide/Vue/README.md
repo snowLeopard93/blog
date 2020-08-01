@@ -1,5 +1,7 @@
 Vue学习笔记，持续更新中~~
 
+vue学习过程中的示例代码，戳[vue-demo](https://github.com/snowLeopard93/vue-demo)
+
 **1. 入门**
 
 （1）**基本概念和常用指令**；
