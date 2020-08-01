@@ -62,12 +62,24 @@
 
 #### 2、按键修饰符
 
+**（1）常用按键别名**
+
+`.enter`/`.tab`/`.delete` (捕获“删除”和“退格”键)/`.esc`/`.space`/`.up`/`.down`/`.left`/`.right`
+
 **示例：**
 
 ```html
 <!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` -->
 <input v-on:keyup.enter="submit">
 ```
+
+**（2）自定义按键修饰符**
+
+```javascript
+// 可以使用 `v-on:keyup.f2`
+Vue.config.keyCodes.f2 = 113;
+```
+
 
 #### 3、系统修饰键
 
