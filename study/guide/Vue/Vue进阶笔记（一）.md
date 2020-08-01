@@ -31,6 +31,8 @@ Vue.filter('过滤器名称', function(data, arg, arg2){
 </script>
 ```
 
+**完整示例戳：**[0.globalFilter.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/advanced/0.globalFilter.html)
+
 #### 2、私有过滤器
 
 > **基本语法**
@@ -74,6 +76,8 @@ new Vue({
     })
 </script>
 ```
+
+**完整示例戳：**[1.privateFilter.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/advanced/1.privateFilter.html)
 
 #### 3、注意
 
