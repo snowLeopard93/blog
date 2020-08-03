@@ -177,7 +177,7 @@ Vue.config.keyCodes.f2 = 113;
     <input type="text" v-model="valueA"/>
     <label>+</label>
     <input type="text" v-model="valueB"/>
-    <label>sum is：{{getSumValue}}</label>
+    <label>sum is：{{sumValue}}</label>
 </div>
 ```
 
@@ -186,8 +186,7 @@ Vue.config.keyCodes.f2 = 113;
         el: '#app',
         data: {
             valueA: 2,
-            valueB: 3,
-            sumValue: 5
+            valueB: 3
         },
         computed: {
             sumValue: function() {
