@@ -1,5 +1,7 @@
 ## ES6进阶笔记（二）Module
 
+本部分主要介绍两点内容，第一点是**ES6的Module**，第二点是**AMD、CMD和CommonJS的介绍及比较**。
+
 ### 一、Module
 
 #### 1、概述
