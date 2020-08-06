@@ -19,7 +19,7 @@
 
 （1）**函数：** 比较非严格模式和严格模式下的this指向及改变this指向的方法；
 
-（2）**Module：** 概述、严格模式、import和export；
+（2）**Module：** 主要介绍两点内容，第一点是**ES6的Module**，第二点是**AMD、CMD和CommonJS的介绍及比较**；
 
 **2. Chrome调试及性能优化**
 
