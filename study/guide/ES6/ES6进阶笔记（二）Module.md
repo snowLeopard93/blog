@@ -177,12 +177,167 @@ export function multiply(x, y) {
 import { firstName, lastName, year } from './profile.js';
 ```
 
-### 二、比较
+### 二、AMD、CMD、CommonJS
 
-**注：** 笔记中的示例代码来自于[ES6入门教程](https://es6.ruanyifeng.com/)和[严格模式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode)，后面会再对笔记中的示例代码进行补充完善和调整。
+#### 1、AMD（Asynchronous Module Definition）
+
+`AMD`采用**异步**方式加载模块，模块的加载不影响它后面语句的运行。
+
+> **基本语法**
+
+`require(['模块的名字']，callBack)`
+
+**示例：**
+
+```html
+<script src="scripts/require.js"></script>
+<script>
+  require.config({
+    baseUrl: "/another/path",
+    paths: {
+        "some": "some/v1.0"
+    },
+    shim: {
+        'jquery.colorize': {
+            deps: ['jquery'],
+            exports: 'jQuery.fn.colorize'
+        },
+        'jquery.scroll': {
+            deps: ['jquery'],
+            exports: 'jQuery.fn.scroll'
+        },
+        'backbone.layoutmanager': {
+            deps: ['backbone']
+            exports: 'Backbone.LayoutManager'
+        }
+    },
+    waitSeconds: 15
+  });
+  require( ["some/module", "my/module", "a.js", "b.js"],
+    function(someModule,    myModule) {
+        //This function will be called when all the dependencies
+        //listed above are loaded. Note that this function could
+        //be called before the page is loaded.
+        //This callback is optional.
+    }
+  );
+</script>
+```
+
+#### 2、CMD（Common Module Definition）
+
+**示例：**
+
+```javascript
+/** AMD写法 **/
+define(["a", "b", "c"], function(a, b, c) { 
+    a.doSomething();
+    if (false) {
+        b.doSomething()
+    } 
+});
+
+/** CMD写法 **/
+define(function(require, exports, module) {
+    var a = require('./a');
+    a.doSomething();
+    if (false) {
+        var b = require('./b');
+        b.doSomething();
+    }
+});
+```
+
+#### 3、CommonJS
+
+> **CommonJS模块的特点**
+
+（1）所有代码都运行在**模块作用域**，不会污染全局作用域。
+
+（2）模块可以**多次加载**，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。
+
+（3）模块加载的顺序，按照其在代码中出现的顺序。
+
+> **module对象**
+
+|  **属性**    | **描述**     |
+| ------------- |-------------|
+| **module.id** | 模块的识别符，通常是带有绝对路径的模块文件名。 |
+| **module.filename** | 模块的文件名，带有绝对路径。 |
+| **module.loaded** | 返回一个布尔值，表示模块是否已经完成加载。 |
+| **module.parent** | 返回一个对象，表示调用该模块的模块。 |
+| **module.children** | 返回一个数组，表示该模块要用到的其他模块。 |
+| **module.exports** | 表示模块对外输出的值。 |
+
+> **基本语法**
+
+**（1）** `exports`
+
+```javascript
+var invisible = function () {
+  console.log("invisible");
+};
+
+exports.message = "hi";
+
+exports.say = function () {
+  console.log(message);
+}
+```
+
+**（2）** `require`
+
+```javascript
+var example = require('./example.js');
+example
+// {
+//   message: "hi",
+//   say: [Function]
+// }
+```
+
+#### 4、比较
+
+> **AMD、CMD、CommonJS比较**
+
+|     | **AMD**     |  **CMD**    | **CommonJS**     |
+| ------------- |-------------| ------------- |-------------|
+| **模块加载（同步、异步）** | 异步 | 异步 | 同步 |
+| **加载模块的语句** | require | define | require |
+| **加载顺序** | 依赖前置、提前执行（预加载） | 依赖就近、延迟执行（懒加载） | |
+| **实践** | requireJs | SeaJS | NodeJS |
+
+> **ES6、CommonJS比较**
+
+|     | **ES6**     |  **CommonJS**    |
+| ------------- |-------------| ------------- |
+| **输出** | 值的引用 | 值的拷贝 |
+| **加载** | 编译时输出接口 | 运行时加载 |
+
+**注意：**
+
+`CommonJS` 加载的是一个对象（即`module.exports`属性），该对象只有在脚本运行完才会生成。而 `ES6` 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
+
+**注：** 笔记中的示例代码来自于以下链接，后面会再对笔记中的示例代码进行补充完善和调整。
+
+[ES6入门教程](https://es6.ruanyifeng.com/)
+
+[严格模式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode)
+
+[CommonJS规范](https://javascript.ruanyifeng.com/nodejs/module.html)
+
+**推荐：**
+
+[前端模块化——彻底搞懂AMD、CMD、ESM和CommonJS](https://www.cnblogs.com/chenwenhao/p/12153332.html#_label2)
 
 **参考：**
 
 [Module 的语法](https://es6.ruanyifeng.com/#docs/module)
 
 [严格模式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode)
+
+[CommonJS规范](https://javascript.ruanyifeng.com/nodejs/module.html)
+
+[requireJs API](https://requirejs.org/docs/api.html)
+
+[前端模块化—CommonJS、CMD、AMD、UMD和ESM](https://juejin.im/post/6857313590337077255)
