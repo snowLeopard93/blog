@@ -1,10 +1,12 @@
 Vue学习笔记，持续更新中~~
 
-vue学习过程中的示例代码，戳[vue-demo](https://github.com/snowLeopard93/vue-demo)
+Vue学习过程中的示例代码，戳[vue-demo](https://github.com/snowLeopard93/vue-demo)
 
 **1. 入门**
 
 （1）**基本概念和常用指令**；
+
+**基本概念**包括**Vue示例**、**指令**和**生命周期钩子**
 
 （2）**修饰符**、**计算属性和侦听属性**；
 
