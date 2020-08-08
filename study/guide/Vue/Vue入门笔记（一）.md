@@ -2,6 +2,8 @@
 
 本部分主要介绍两点内容，第一点是**基本概念**，第二点是**常用指令**。 
 
+其中，**基本概念**包括Vue实例、指令和生命周期钩子。
+
 ### 一、基本概念
 
 #### 1、Vue实例
@@ -31,9 +33,49 @@ new Vue({
 
 #### 3、生命周期钩子
 
-**beforeCreate** -> `created` -> **beforeMount** -> `mounted` -> **beforeUpdate** -> `updated` -> **beforeDestroy** -> `destroyed`
+**初始化阶段：** `beforeCreate`、`created`、`beforeMount`、`mounted` 
+
+**执行阶段：** `beforeUpdate`、`updated` 
+
+**销毁阶段：** `beforeDestroy`、`destroyed`
 
 [Vue生命周期图示](https://cn.vuejs.org/v2/guide/instance.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA)
+
+**示例：**
+
+```javascript
+new Vue({
+    el: '#app',
+    data: {
+       msg: "hello",
+    },
+    // 实例完全被创建出来之前执行它
+    beforeCreate() {
+    },
+    created() {
+    },
+    // 模板在内存中编译完成，但未将其渲染到页面
+    beforeMount() {
+    },
+    // 内存中模板已经挂载到页面，从创建阶段进入到运行阶段
+    mounted() {
+    },
+    // 页面没有被更新，但数据已经被更新了
+    beforeUpdate() {
+    },
+    // 页面被更新，与数据一致
+    updated() {
+    },
+    // Vue实例从运行阶段进入到销毁阶段，但实例上的data、methods、过滤器、指令等等还处于可用状态
+    beforeDestroy() {
+    },
+    // 实例被完全销毁，data、methods、过滤器、指令等等已经不可用了
+    destroyed() {
+    }
+})
+```
+
+**完整示例戳：**[2.life-demo1.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/basic/2.life-demo1.html)
 
 ### 二、常用指令
 
