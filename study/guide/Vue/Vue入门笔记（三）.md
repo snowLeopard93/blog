@@ -76,3 +76,31 @@ Vue.component('hello-vue', {
 ```
 
 **完整示例戳：**[2.prop.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/component/2.prop.html)
+
+### 二、组件深入
+
+#### 1、组件注册
+
+> **全局注册**
+
+```javascript
+Vue.component('my-component-name', {
+  // ... 选项 ...
+})
+```
+
+> **局部注册**
+
+```javascript
+var ComponentA = { /* ... */ };
+var ComponentB = { /* ... */ };
+var ComponentC = { /* ... */ };
+
+new Vue({
+  el: '#app',
+  components: {
+    'component-a': ComponentA,
+    'component-b': ComponentB
+  }
+})
+```
