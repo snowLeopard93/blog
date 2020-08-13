@@ -1,10 +1,8 @@
 ## Vue入门笔记（三）
 
-### 一、组件基础
+### 一、组件定义、注册及使用
 
-#### 1、定义新组件
-
-使用`Vue.component`定义新组件
+#### 1、组件定义
 
 **示例：**
 
@@ -15,9 +13,95 @@ Vue.component('hello-vue', {
  });
 ```
 
+> **在html中定义**
+
+```html
+<script>
+    Vue.component('hello-vue', {
+        template: '<div>Hello World，Hello Vue！</div>'
+    });
+    new Vue({
+        el: '#app'
+    })
+</script>
+```
+
 **完整示例戳：**[0.HelloVue.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/component/0.HelloVue.html)
 
-#### 2、使用新组件
+> **在.vue文件中定义**
+
+```vue
+<template>
+  <div class="hello">
+    <h1>{{ msg }}</h1>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'HelloWorld',
+  props: {
+    msg: String
+  }
+}
+</script>
+```
+
+**完整示例戳：** [HelloWorld.vue](https://github.com/snowLeopard93/vue-demo/blob/master/vue-cli/src/components/HelloWorld.vue)
+
+#### 2、组件注册
+
+> **全局注册**
+
+```javascript
+Vue.component('my-component-name', {
+  // ... 选项 ...
+})
+```
+
+> **局部注册**
+
+**（1）基本语法：** 
+```javascript
+var ComponentA = { /* ... */ };
+var ComponentB = { /* ... */ };
+var ComponentC = { /* ... */ };
+
+new Vue({
+  el: '#app',
+  components: {
+    'component-a': ComponentA,
+    'component-b': ComponentB
+  }
+})
+```
+
+**示例：**
+
+```vue
+<template>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  </div>
+</template>
+
+<script>
+import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+}
+</script>
+```
+
+**完整示例戳：** [App.vue](https://github.com/snowLeopard93/vue-demo/blob/master/vue-cli/src/App.vue)
+
+
+#### 3、组件使用
 
 **注意：**
 
@@ -46,7 +130,7 @@ Vue.component('hello-vue', {
 
 **完整示例戳：**[1.count.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/component/1.count.html)
 
-#### 3、通过 Prop 向子组件传递数据
+#### 4、通过 Prop 向子组件传递数据
 
 **示例：**
 
@@ -76,31 +160,3 @@ Vue.component('hello-vue', {
 ```
 
 **完整示例戳：**[2.prop.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/component/2.prop.html)
-
-### 二、组件深入
-
-#### 1、组件注册
-
-> **全局注册**
-
-```javascript
-Vue.component('my-component-name', {
-  // ... 选项 ...
-})
-```
-
-> **局部注册**
-
-```javascript
-var ComponentA = { /* ... */ };
-var ComponentB = { /* ... */ };
-var ComponentC = { /* ... */ };
-
-new Vue({
-  el: '#app',
-  components: {
-    'component-a': ComponentA,
-    'component-b': ComponentB
-  }
-})
-```
