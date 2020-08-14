@@ -1,6 +1,8 @@
 ## Vue入门笔记（三）
 
-### 一、组件定义、注册及使用
+本部分主要介绍两点内容，第一点是**组件定义、注册**，第二点是**Prop基础**。 
+
+### 一、组件定义、注册
 
 #### 1、组件定义
 
@@ -130,33 +132,40 @@ export default {
 
 **完整示例戳：**[1.count.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/component/1.count.html)
 
-#### 4、通过 Prop 向子组件传递数据
+### 二、Prop
+
+#### 1、Prop类型
+
+```javascript
+props: {
+  title: String,
+  likes: Number,
+  isPublished: Boolean,
+  commentIds: Array,
+  author: Object,
+  callback: Function,
+  contactsPromise: Promise // or any other constructor
+}
+```
+
+#### 2、通过 Prop 向子组件传递数据
+
+> **传入数字**
 
 **示例：**
 
-```html
-<div id="app">
-    <blog-post v-for="item in list"
-               v-bind:key="item.id"
-               v-bind:title="item.title">
-    </blog-post>
-</div>
-<script>
-    Vue.component('blog-post', {
-        props: ['title'],
-        template: '<h3>{{ title }}</h3>'
-    });
-    new Vue({
-        el: '#app',
-        data: {
-            list: [
-                { id: 1, title: 'My journey with Vue' },
-                { id: 2, title: 'Blogging with Vue' },
-                { id: 3, title: 'Why Vue is so fun' }
-            ]
-        }
-    })
-</script>
-```
+> **传入布尔值**
 
-**完整示例戳：**[2.prop.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/component/2.prop.html)
+**示例：**
+
+> **传入数组**
+
+**示例：**
+
+> **传入对象**
+
+**示例：**
+
+> **传入对象所有的property**
+
+**示例：**
