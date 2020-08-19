@@ -1,21 +1,14 @@
 ## Vue入门笔记（三）
 
-本部分主要介绍两点内容，第一点是**组件定义、注册**，第二点是**Prop基础**。 
+本部分主要介绍两点内容，第一点是**创建组件和组件注册**，第二点是**Prop基础**。 
 
-### 一、组件定义、注册
+### 一、创建组件和组件注册
 
-#### 1、组件定义
+#### 1、创建组件
+
+> **使用Vue.component()创建组件**
 
 **示例：**
-
-```javascript
-Vue.component('hello-vue', {
-    // 此处即为需要封装的html部分
-    template: '<div>Hello World，Hello Vue！</div>'
- });
-```
-
-> **在html中定义**
 
 ```html
 <script>
@@ -28,28 +21,22 @@ Vue.component('hello-vue', {
 </script>
 ```
 
-**完整示例戳：**[0.HelloVue.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/component/0.HelloVue.html)
+> **使用template标签创建组件**
 
-> **在.vue文件中定义**
-
-```vue
-<template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-  </div>
+```html
+<div id="app"></div>
+<template id="tmpl">
+    <div>Hello World，Hello Vue！</div>
 </template>
-
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+    Vue.component("hello-vue", {
+        template: "#tmpl"
+    });
+    new Vue({
+        el: '#app'
+    })
 </script>
 ```
-
-**完整示例戳：** [HelloWorld.vue](https://github.com/snowLeopard93/vue-demo/blob/master/vue-cli/src/components/HelloWorld.vue)
 
 #### 2、组件注册
 
