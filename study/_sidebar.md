@@ -23,6 +23,7 @@
 
 - Git
     - [Git常用命令速查](guide/Git/Git常用命令速查.md)	
+    - [Git常见问题速查](guide/Git/Git常见问题速查.md)
     
 - 其他
     - [页面间通信及跨域](guide/其他/页面间通信及跨域.md)
