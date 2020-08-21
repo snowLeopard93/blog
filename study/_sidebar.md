@@ -15,7 +15,11 @@
     
 - Vue进阶
     - [Vue进阶笔记（一）](guide/Vue/Vue进阶笔记（一）.md)    
-    - [Vue进阶笔记（二）](guide/Vue/Vue进阶笔记（二）.md)    
+    - [Vue进阶笔记（二）](guide/Vue/Vue进阶笔记（二）.md)   
+    
+- 第三方组件
+    - **可视化**
+    - [Echarts](guide/第三方组件/可视化/Echarts.md)
  
 - Chrome调试及性能优化
     - [Chrome调试](guide/Chrome调试及性能优化/Chrome调试.md)
