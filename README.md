@@ -5,7 +5,7 @@
 
 ### 内容介绍
 
-**一. ES6**
+**一. [ES6](https://github.com/snowLeopard93/blog/tree/master/study/guide/ES6)**
 
 **二. Chrome调试及性能优化**
 
