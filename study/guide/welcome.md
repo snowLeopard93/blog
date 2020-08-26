@@ -10,7 +10,7 @@
 	- [ES6入门笔记（三）](guide/ES6/ES6入门笔记（三）.md)
 
 - ES6进阶
-    - [ES6进阶笔记（一）函数](guide/ES6/ES6进阶笔记（一）函数.md)
+    - [ES6进阶笔记（一）](guide/ES6/ES6进阶笔记（一）.md)
     - [ES6进阶笔记（二）](guide/ES6/ES6进阶笔记（二）.md)
 
 - Vue
