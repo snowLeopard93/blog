@@ -15,11 +15,7 @@
 
 **三. [Vue](https://github.com/snowLeopard93/blog/blob/master/study/guide/Vue)**
 
-**四. Git**
-
-（1）**Git常用命令速查**；
-
-（2）**Git常见问题速查**；
+**四. [Git](https://github.com/snowLeopard93/blog/tree/master/study/guide/Git)**
 
 **五. 其他**
 
