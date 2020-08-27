@@ -114,7 +114,7 @@ echarts.dispose(demoChart);
 
 常用图表可以根据有无坐标轴分为**有坐标轴**的图表和**无坐标轴**的图表两种。
 
-**有坐标轴**的图表包括柱状图（条形图）、环形图（饼图）、折线图（区域图），折线图（区域图）+ 柱状图等。
+**有坐标轴**的图表包括柱状图（条形图）、环形图（饼图）、折线图（区域图），折线图（区域图）+ 柱状图、气泡图等。
 
 **无坐标轴**的图表包括环形图（饼图）、仪表盘等。
 
@@ -410,6 +410,36 @@ series中有一个对象多了一个`xAxisIndex`属性，且值为1。
 ]
 ```
 
+**（4）气泡图（scatter）**
+
+**注意：** 如果有需要有多种颜色的气泡，则需要在`series`中定义多个对象。
+
+```javascript
+"series": [
+    {
+        "type": "scatter",
+        "data":  [],
+        "label": {
+            "show": true,
+            "position": 'inside',
+            "textStyle": {
+                "color": "#fff",
+                "fontSize": "10",
+                "fontWeight": "bold"
+            },
+            "formatter": function(a, b, c) {
+                return a.value[2];
+            }
+        },
+        "itemStyle": { //当前数据的样式
+            "normal": {color:'#d72525'}
+        },
+        "symbolSize": 50,
+        // "symbol": "image://images/cake.png"
+    }
+]
+```
+
 > 无坐标轴
 
 **（1）环形图（饼图）（pie）**
@@ -653,13 +683,175 @@ trafficCongestionChart.setOption(options);
 
 #### 2、只需用到点位的地图
 
-如果只要用到点位，则不需要引入其他的js。
+如果只需用到点位，则不需要引入其他的js。
 
 > 人口密度地图
 
+**实现思路：**
+
+**（1）** 引入地图的json文件；
+
+**（2）** 初始化echart；
+
+**（3）** 将json数据注册到echart里面；
+
+**（4）** 设置参数；
+
+```javascript
+$.get('../bmap/fujianExtend.json', function (geoJson) {
+    var mapDom = document.getElementById("mapChart");
+    var mapChart = echarts.init(mapDom);
+    echarts.registerMap('fujian', geoJson);
+    mapChart.setOption({
+        // "tooltip": {
+        //     "trigger": 'item',
+        //     "formatter": '{b}<br/>{c}'
+        // },
+        "toolbox": {
+            "show": false
+        },
+        "visualMap": {
+            "min": 0,
+            "max": 1000,
+            "text": ["高", "低"],
+            "realtime": false,
+            "calculable": false,
+            "inRange": { // 设置图例上的颜色深浅
+                "color": ["#0ec9d2", "#d1ad35", "#c5481d"]
+            },
+            "right": 0,
+            "bottom": 50,
+            "textStyle": {
+                "color": "#fff"
+            }
+        },
+        "series": [
+            {
+                "name": "",
+                "type": "map",
+                "zoom": 1.25,
+                "aspectScale": 1.4,
+                // "left": 120,
+                // "top": 150,
+                "mapType": "fujian", // 自定义扩展图表类型
+                "itemStyle": {
+                    "normal": {
+                        "color": "rgb(1,220,0)"
+                    }
+                },
+                "label": {
+                    "normal": {
+                        "formatter": function(a) {
+                        },
+                        "position": "right",
+                        "show": true,
+                        "color": "#fff",
+                        "fontWeight": "bold",
+                        "fontSize": 16
+                    },
+                    "emphasis": {
+                        "show": true
+                    }
+                },
+                "data": []
+            }
+        ]
+    });
+});
+```
+
 > 点线地图
 
-#### 3、气泡图
+```javascript
+$.get('../bmap/china.json', function (geoJson) {
+    var mapDom = document.getElementById("mapChart");
+    var mapChart = echarts.init(mapDom);
+    echarts.registerMap("china", geoJson);
+    mapChart.setOption({
+        "tooltip": {
+            "trigger": "item",
+            "show": false
+        },
+        "geo": {
+            "show": true,
+            "map": "china",
+            "zoom": 1.15,
+            "top": "100px",
+            "aspectScale": 0.8,
+            "nameMap": {
+                "China": "中国"
+            },
+            "selectedMode": "single",
+            "label": {
+                "normal": {
+                    "show": false
+                },
+                "emphasis": {
+                    "show": false
+                }
+            },
+            "itemStyle": {
+                "normal": {
+                    "areaColor": "#033b92",
+                    "borderColor": "#0da4f0",
+                },
+                "emphasis": {
+                    "areaColor": "#033b92"
+                }
+            }
+        },
+        "series": [
+            {
+                "type": "effectScatter",
+                "coordinateSystem": "geo",
+                "hoverAnimation": true,
+                "symbolSize": 8,
+                "itemStyle": {
+                    "normal": {
+                        "color": "#03fa92"
+                    }
+                },
+                "label": {
+                    "normal": {
+                        "formatter": "{b}",
+                        "position": "right",
+                        "show": true,
+                        "color": "#fff"
+                    },
+                    "emphasis": {
+                        "show": true
+                    }
+                },
+                "data": []
+            },
+            {
+                "type": "lines",
+                "zlevel": 5,
+                "animation": false,
+                "rippleEffect": {
+                    "brushType": "stroke"
+                },
+                "effect": {
+                    "show": true,
+                    "period": 6,
+                    "trailLength": 0.7,
+                    "color": "#03fa92",
+                    // "symbolSize": 3
+                },
+                "lineStyle": {
+                    "normal": {
+                        "color": "#03fa92",
+                        // "color": "#b0d8ff",
+                        "width": 1,
+                        "curveness": 0.1
+                    }
+                },
+                "data": []
+            }
+        ]
+    });
+})
+```
 
 ### 四、特殊效果实现
 
@@ -669,7 +861,55 @@ trafficCongestionChart.setOption(options);
 
 > 方法二：借助dispatchAction方法，不对图表进行销毁操作
 
+**实现思路：**
+
+图例的勾选和取消勾选会触发动画效果，因此可以调用`legendToggleSelect`方法实现动画效果。
+
+**（1）柱状图（条形图）**
+
+```javascript
+var barChart = {
+    // ......
+};
+setInterval(function(){
+    barChart.dispatchAction({
+        "type": 'legendToggleSelect',
+        "batch": [{"name":"图例1"}, {"name": "图例2"}]
+    });
+    setTimeout(function(){
+        barChart.dispatchAction({
+            "type": 'legendToggleSelect',
+            "batch": [{"name":"图例1"}, {"name": "图例2"}]
+        });
+    }, 500)
+},  50000);
+```
+
+**（2）饼图**
+
+```javascript
+var pieChart= {
+    // ......
+};
+setInterval(function(){
+    pieChart.dispatchAction({
+        "type": 'legendToggleSelect',
+        "batch": ["图例1", "图例2"]
+    });
+    setTimeout(function(){
+        pieChart.dispatchAction({
+            "type": 'legendToggleSelect',
+            "batch": ["图例1", "图例2"]
+        });
+    }, 500)
+},  50000);
+```
+
 #### 2、地图上方实现悬浮信息的轮播效果
+
+**实现思路：**
+
+在页面中添加若干个div块（`position`为`absolute`），然后通过`setInterval`方法每隔一段时间显示其中一个div块的内容。
 
 **参考：**
 
