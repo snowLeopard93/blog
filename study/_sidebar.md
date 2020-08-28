@@ -20,6 +20,7 @@
 - 第三方组件
     - **可视化**
     - [Echarts](guide/第三方组件/可视化/Echarts.md)
+    - [HighCharts](guide/第三方组件/可视化/HighCharts.md)
  
 - Chrome调试及性能优化
     - [Chrome调试](guide/Chrome调试及性能优化/Chrome调试.md)
