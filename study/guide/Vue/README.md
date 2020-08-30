@@ -16,6 +16,10 @@ Vue学习过程中的示例代码，戳[vue-demo](https://github.com/snowLeopard
 
 **关键词：** 组件注册、Prop
 
+#### Vue入门笔记（四）
+
+**关键词：** router、路由嵌套、命名视图
+
 ### 2. 进阶
 
 #### Vue进阶笔记（一）
