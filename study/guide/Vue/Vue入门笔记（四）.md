@@ -1,5 +1,7 @@
 ## Vue入门笔记（四）
 
+本部分主要介绍`vue-router`的相关内容，包括`router-view`，`router-link`，路由传参、路由嵌套和命名视图等。
+
 ### 一、vue-router的引入
 
 #### 1、script标签引入
@@ -130,7 +132,7 @@ npm install vue-router
 
 **完整示例戳：**
 
-[0.vue-router-demo1](https://github.com/snowLeopard93/vue-demo/blob/master/vue/router/0.vue-router-demo1.html)
+[0.vue-router-demo1.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/router/0.vue-router-demo1.html)
 
 [1.vue-router-demo2.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/router/1.vue-router-demo2.html)
 
