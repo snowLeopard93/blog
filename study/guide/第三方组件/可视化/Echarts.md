@@ -149,7 +149,8 @@ var options = {
     "bottom": 20,
     "left": 10,
     "right": 10,
-    "itemGap": 15
+    "itemGap": 15,
+    "type": "scroll" // 用来设置图例过多时显示箭头翻页
 }
 ```
 
