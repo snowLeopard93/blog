@@ -21,7 +21,7 @@
 
 **六. 其他**
 
-（1）**页面间通信及跨域**；
+（1）**[页面间通信及跨域](https://github.com/snowLeopard93/blog/blob/master/study/guide/%E5%85%B6%E4%BB%96/%E9%A1%B5%E9%9D%A2%E9%97%B4%E9%80%9A%E4%BF%A1%E5%8F%8A%E8%B7%A8%E5%9F%9F.md)**；
 
 **七. 工具类**
 
