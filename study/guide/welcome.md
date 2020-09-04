@@ -30,6 +30,7 @@
     - [Echarts](guide/第三方组件/可视化/Echarts.md)
     - [HighCharts](guide/第三方组件/可视化/HighCharts.md)
     - [Charts](guide/第三方组件/可视化/Charts.md)
+    - [Chartjs](guide/第三方组件/可视化/Chartjs.md)
     - [可视化组件对比](guide/第三方组件/可视化/可视化组件对比.md)
  
 - Chrome调试及性能优化
