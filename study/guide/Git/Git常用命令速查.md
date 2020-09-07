@@ -79,3 +79,7 @@ git commit -m "delete workspace.xml"
 ```
 git remote add origin git@github.com:snowLeopard93/blog.git
 ```
+
+**推荐：**
+
+[一张脑图带你掌握Git命令](https://juejin.im/post/6869519303864123399)
