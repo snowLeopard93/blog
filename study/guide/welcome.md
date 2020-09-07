@@ -18,6 +18,7 @@
 - TypeScript
     - [TypeScript入门笔记（一）](guide/TypeScript/TypeScript入门笔记（一）.md)
     - [TypeScript入门笔记（二）](guide/TypeScript/TypeScript入门笔记（二）.md)
+    - [TypeScript入门笔记（三）](guide/TypeScript/TypeScript入门笔记（三）.md)
 
 - Vue
     - [Vue入门笔记（一）](guide/Vue/Vue入门笔记（一）.md)	
