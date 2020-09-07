@@ -28,3 +28,5 @@
 （1）**momentJS**；
 
 **八. [第三方组件-可视化](https://github.com/snowLeopard93/blog/tree/master/study/guide/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BB%84%E4%BB%B6/%E5%8F%AF%E8%A7%86%E5%8C%96)**
+
+**九. [TypeScript](https://github.com/snowLeopard93/blog/tree/master/study/guide/TypeScript)**
