@@ -1,5 +1,3 @@
-## Echarts
-
 ### 一、前置
 
 #### 1、Echarts引入
@@ -19,6 +17,12 @@ require([
 ], function (echarts) {
     // ......
 })
+```
+
+> **npm**
+
+```
+npm install echarts --save-dev
 ```
 
 #### 2、Echarts常用方法
@@ -911,6 +915,109 @@ setInterval(function(){
 **实现思路：**
 
 在页面中添加若干个div块（`position`为`absolute`），然后通过`setInterval`方法每隔一段时间显示其中一个div块的内容。
+
+### 五、vue + Echarts
+
+**示例：**
+
+```vue
+<template>
+    <div :style="{height:height,width:width}">
+
+    </div>
+</template>
+
+<script>
+    import echarts from 'echarts';
+    require('echarts/theme/macarons');
+    export default {
+        name: "EchartDemo",
+        props: {
+            className: {
+                type: String,
+                default: 'chart'
+            },
+            width: {
+                type: String,
+                default: '100%'
+            },
+            height: {
+                type: String,
+                default: '300px'
+            }
+        },
+        data() {
+            return {
+                chart: null
+            }
+        },
+        mounted() {
+            this.initChart()
+        },
+        beforeDestroy() {
+            if(!this.chart) {
+                return;
+            }
+            this.chart.dispose();
+            this.chart = null
+        },
+        methods: {
+            initChart() {
+                this.chart = echarts.init(this.$el, "macarons");
+                this.chart.setOption({
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    grid: {
+                        top: 10,
+                        left: '2%',
+                        right: '2%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: [{
+                        type: 'category',
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }],
+                    yAxis: [{
+                        type: 'value',
+                        axisTick: {
+                            show: false
+                        }
+                    }],
+                    series: [{
+                        name: 'pageA',
+                        type: 'bar',
+                        stack: 'vistors',
+                        barWidth: '60%',
+                        data: [79, 52, 200, 334, 390, 330, 220],
+                    }, {
+                        name: 'pageB',
+                        type: 'bar',
+                        stack: 'vistors',
+                        barWidth: '60%',
+                        data: [80, 52, 200, 334, 390, 330, 220],
+                    }, {
+                        name: 'pageC',
+                        type: 'bar',
+                        stack: 'vistors',
+                        barWidth: '60%',
+                        data: [30, 52, 200, 334, 390, 330, 220],
+                    }]
+                })
+            }
+        }
+    }
+</script>
+```
+
+**完整示例戳：** [EchartDemo.vue](https://github.com/snowLeopard93/vue-demo/blob/master/vue-cli/src/components/demo/EchartDemo.vue)
 
 **参考：**
 
