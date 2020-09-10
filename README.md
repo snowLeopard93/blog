@@ -7,7 +7,7 @@
 
 #### 一、HTML、JavaScript、TypeScript
 
-**1、HTML**
+**1、[HTML](https://github.com/snowLeopard93/blog/tree/master/study/guide/HTML)**
 
 **2、[ES6](https://github.com/snowLeopard93/blog/tree/master/study/guide/ES6)**
 
