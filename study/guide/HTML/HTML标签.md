@@ -25,8 +25,20 @@
 | **src** | 文件路径 |
 
 ```html
-<audio src="music/1.mp3" autoplay="autoplay" loop="loop"></audio>
+<audio id="audioDemo" src="music/1.mp3" autoplay="autoplay" loop="loop"></audio>
 ```
+
+```javascript
+var audio = document.getElementById('audioDemo');
+if(audio !== null) {
+    if (!audio.paused) {
+        audio.pause();
+    } else {
+        audio.play();
+    }
+}
+```
+
 
 **推荐：**
 
