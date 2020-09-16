@@ -60,12 +60,12 @@ git reset --hard 44bd896bb726be3d3815f1f25d738a9cd402a477
 
 查看本地修改的文件或未放入到本地仓库的文件、目录
 
-> **git -rm -r --cached**
+> **git rm -r --cached**
 
 将git上已经有版本控制的文件移除
 
 ```
-git -rm -r --cached "study/.idea/workspace.xml"
+git rm -r --cached "study/.idea/workspace.xml"
 
 git commit -m "delete workspace.xml"
 ```
