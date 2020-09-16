@@ -34,7 +34,7 @@
     - [可视化组件对比](guide/第三方组件/可视化/可视化组件对比.md)
  
 - 插件
-    - [jsPDF](guide/插件/0.jsPDF.md)
+    - [下载](guide/插件/下载.md)
  
 - Chrome调试及性能优化
     - [Chrome调试](guide/Chrome调试及性能优化/Chrome调试.md)
