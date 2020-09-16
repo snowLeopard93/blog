@@ -2,6 +2,8 @@
 
 **内容持续更新中~~**
 
+<a href="https://github.com/snowLeopard93/blog" target="_blank"><img src="../../images/resource/github.png"/></a>
+
 当前目录结构为：
  ```markdown
 - HTML
