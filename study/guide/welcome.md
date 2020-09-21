@@ -9,7 +9,7 @@
 - HTML
     - [HTML README](guide/HTML/README.md)
     - [HTML标签](guide/HTML/HTML标签.md)
-
+    
 - ES6
     - [ES6 README](guide/ES6/README.md)
 	- [ES6入门笔记（一）](guide/ES6/ES6入门笔记（一）.md)
@@ -26,6 +26,7 @@
 
 - Vue
     - [Vue README](guide/Vue/README.md)	
+    - [Vue入门笔记（一）](guide/Vue/Vue入门笔记（一）.md)
     - [Vue入门笔记（二）](guide/Vue/Vue入门笔记（二）.md)	
     - [Vue入门笔记（三）](guide/Vue/Vue入门笔记（三）.md)
     - [Vue入门笔记（四）](guide/Vue/Vue入门笔记（四）.md)
