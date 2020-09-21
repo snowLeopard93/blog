@@ -14,7 +14,7 @@ Vue学习过程中的示例代码，戳[vue-demo](https://github.com/snowLeopard
 
 #### Vue入门笔记（三）
 
-**关键词：** 组件注册、Prop
+**关键词：** 组件注册、Prop、插槽（slot）
 
 #### Vue入门笔记（四）
 
