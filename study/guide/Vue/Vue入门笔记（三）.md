@@ -1,6 +1,4 @@
-## Vue入门笔记（三）
-
-本部分主要介绍两点内容，第一点是**创建组件和组件注册**，第二点是**Prop基础**。 
+本部分主要介绍三点内容，第一点是**创建组件和组件注册**，第二点是**Prop基础**，第三点是**插槽slot**。
 
 ### 一、创建组件和组件注册
 
@@ -199,3 +197,65 @@ props: {
 ```
 
 **完整示例戳：** [4.prop-2.html](https://github.com/snowLeopard93/vue-demo/blob/master/vue/component/4.prop-2.html)
+
+### 三、slot
+
+#### 1、slot
+
+> **具名插槽**
+
+**示例：**
+
+```html
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+```
+
+> **作用域插槽**
+
+**示例：**
+
+```html
+<span>
+  <slot v-bind:user="user">
+    {{ user.lastName }}
+  </slot>
+</span>
+```
+
+> `v-slot`
+
+在 2.6.0 中，为具名插槽和作用域插槽引入了一个新的统一的语法 (即 `v-slot` 指令)。它取代了 `slot` 和 `slot-scope` 这两个目前已被废弃但未被移除且仍在文档中的 attribute。
+
+**示例：**
+
+```html
+<base-layout>
+  <template v-slot:header>
+    <h1>Here might be a page title</h1>
+  </template>
+
+  <p>A paragraph for the main content.</p>
+  <p>And another one.</p>
+
+  <template v-slot:footer>
+    <p>Here's some contact info</p>
+  </template>
+</base-layout>
+```
+
+**注：** 笔记中的示例代码来自于[插槽](https://cn.vuejs.org/v2/guide/components-slots.html)，后面会再对笔记中的示例代码进行补充完善和调整。
+
+**参考：**
+
+[插槽](https://cn.vuejs.org/v2/guide/components-slots.html)
+
