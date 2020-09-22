@@ -30,7 +30,7 @@ Vue学习过程中的示例代码，戳[vue-demo](https://github.com/snowLeopard
 
 **关键词：** 自定义指令
 
-
+### 3. Vuex
 
 **推荐：**
 
