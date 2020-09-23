@@ -52,4 +52,4 @@
     - [页面间通信及跨域](guide/其他/页面间通信及跨域.md)
 
 - 工具类
-    - [momentJS](guide/util/0.momentJS.md)
+    - [日期处理工具类](guide/util/0.日期处理工具类.md)
