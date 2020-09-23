@@ -22,7 +22,7 @@ require([
 > **npm**
 
 ```
-npm install echarts --save-dev
+npm install echarts --save
 ```
 
 #### 2、Echarts常用方法
@@ -1017,7 +1017,7 @@ setInterval(function(){
 </script>
 ```
 
-**完整示例戳：** [EchartDemo.vue](https://github.com/snowLeopard93/vue-demo/blob/master/vue-cli/src/components/demo/EchartDemo.vue)
+**完整示例戳：** [EchartDemo.vue](https://github.com/snowLeopard93/vue-demo/blob/master/vue-cli/vue-echart-demo/src/components/EchartDemo.vue)
 
 **参考：**
 
