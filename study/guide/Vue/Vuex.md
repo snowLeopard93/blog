@@ -8,20 +8,29 @@
 
 > State
 
+**（1）** `mapState` 辅助函数可以生成计算属性。
+
 > Mutation
 
-更改 `Vuex` 的 `store` 中的状态的唯一方法是提交 `mutation`。
+**（1）** 更改 `Vuex` 的 `store` 中的状态的唯一方法是提交 `mutation`。
+
+**（2）** `mapMutations` 辅助函数将组件中的 `methods` 映射为 `store.commit` 调用。
+
+**（3）** 在 `Vuex` 中，`mutation` 都是**同步事务**。
 
 > Action
 
-`Action` 类似于 `mutation`，不同在于：
+**（1）** `Action` 类似于 `mutation`，不同在于：`Action` 提交的是 `mutation`，而不是直接变更状态；`Action` 可以包含任意**异步操作**。
 
-（1）`Action` 提交的是 `mutation`，而不是直接变更状态。
-（2）`Action` 可以包含任意**异步操作**。
+**（2）** `Action` 通过 `store.dispatch` 方法触发。
+
+**（3）** `mapActions` 辅助函数将组件的 `methods` 映射为 `store.dispatch` 调用。
 
 > Getter
 
-`Vuex` 允许我们在 store 中定义“getter”（可以认为是 `store` 的计算属性）。就像计算属性一样，`getter` 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
+**（1）** `Vuex` 允许我们在 store 中定义“getter”（可以认为是 `store` 的计算属性）。就像计算属性一样，`getter` 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
+
+**（2）** `mapGetters` 辅助函数仅仅是将 `store` 中的 `getter` 映射到局部计算属性。
 
 ### 二、基本语法
 
