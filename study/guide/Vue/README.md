@@ -32,6 +32,8 @@ Vue学习过程中的示例代码，戳[vue-demo](https://github.com/snowLeopard
 
 ### 3. Vuex
 
+**关键词：** State、Mutation、Action、Getter
+
 **推荐：**
 
 [2019年最全最新Vue、Vuejs教程，从入门到精通](https://www.bilibili.com/video/BV15741177Eh)
