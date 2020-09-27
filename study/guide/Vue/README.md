@@ -36,6 +36,8 @@ Vue学习过程中的示例代码，戳[vue-demo](https://github.com/snowLeopard
 
 **推荐：**
 
+[Vue开发实战-从0开始搭建大型Vue项目](https://time.geekbang.org/course/intro/100024601)
+
 [2019年最全最新Vue、Vuejs教程，从入门到精通](https://www.bilibili.com/video/BV15741177Eh)
 
 [学 Vue.js 看这个就够了](https://www.bilibili.com/video/BV11s411A7h6?p=1)
