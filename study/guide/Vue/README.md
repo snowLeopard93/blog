@@ -34,7 +34,7 @@ Vue学习过程中的示例代码，戳[vue-demo](https://github.com/snowLeopard
 
 **关键词：** State、Mutation、Action、Getter
 
-### 4. Vue Test Utils
+### [4. Vue Test Utils](https://github.com/snowLeopard93/blog/blob/master/study/guide/Vue/Vue-Test-Utils.md)
 
 **关键词：** Jest、test-utils、sinon、@sinonjs/referee
 
