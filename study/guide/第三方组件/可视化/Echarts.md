@@ -335,12 +335,11 @@ series中有一个对象多了一个`xAxisIndex`属性，且值为1。
         "areaStyle": {
             "normal": {
                 "color": new echarts.graphic.LinearGradient(0, 0, 0, 1,[{
-                        "offset": 0, color: "#0d618d" // 0% 处的颜色
-                    , {
-                        "offset": 1, color: "#103152" // 100% 处的颜色
-                    }]
-                )}
-            }
+                    "offset": 0, color: "#0d618d" // 0% 处的颜色
+                }, {
+                    "offset": 1, color: "#103152" // 100% 处的颜色
+                }]
+            )}
         },
         "data": []
     }
