@@ -283,6 +283,59 @@ var options = {
 
 **示例2：**
 
+**条形图渐变色（itemStyle - normal - color）**
+
+**注意：**
+
+渐变色使用的是 `new echarts.graphic.LinearGradient(type1, type2, type3, type4, ,colorArr);`
+
+其中：
+
+`type1`、`type2`、`type3`、`type4` 的可选值为0、1；type1的值为1时，表示渐变色**从右到左**；type2的值为1时，表示渐变色**从下到上**；type3的值为1时，表示渐变色**从左到右**；type4的值为1时，表示渐变色**从上到下**；
+
+`colorArr` 是一个颜色数组；
+
+```javascript
+"series": [
+    {
+        "name": "",
+        "type": "bar",
+        "itemStyle": {
+            "normal": {
+                "color": new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        "offset": 0, "color": "#0093ff" // 0% 处的颜色
+                    }, {
+                        "offset": 1, "color": "#00dff9" // 100% 处的颜色
+                }])
+            }
+        },
+        data: [100, 200, 300, 400, 500]
+    }
+]
+```
+
+**示例3：**
+
+**条形图圆角（itemStyle - normal - barBorderRadius）**
+
+```javascript
+"series": [
+    {
+        "name": "",
+        "type": "bar",
+        "itemStyle": {
+            "normal": {
+                // 分别代表左上角、右上角、右下角和左下角
+                "barBorderRadius": [0, 10, 10, 0]
+            }
+        },
+        data: [100, 200, 300, 400, 500]
+    }
+]
+```
+
+**示例4：**
+
 **双条形图（xAxisIndex）**
 
 **注意：**
