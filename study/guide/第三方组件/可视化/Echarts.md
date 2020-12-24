@@ -746,7 +746,7 @@ trafficCongestionChart.setOption(options);
 
 **实现思路：**
 
-**（1）** 引入地图的json文件；
+**（1）** 引入地图的json文件；（[地图json获取](https://datav.aliyun.com/tools/atlas)）
 
 **（2）** 初始化echart；
 
