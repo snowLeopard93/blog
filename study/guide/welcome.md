@@ -7,8 +7,8 @@
 当前目录结构为：
  ```markdown
 - HTML
-    - [HTML README](guide/HTML/README.md)
-    - [HTML标签](guide/HTML/HTML标签.md)
+    - [HTML README](guide/HTML+CSS/README.md)
+    - [HTML标签](guide/HTML+CSS/HTML标签.md)
     
 - ES6
     - [ES6 README](guide/ES6/README.md)
