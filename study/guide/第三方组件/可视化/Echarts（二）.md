@@ -441,3 +441,7 @@
     }
 ]
 ```
+
+**效果图**
+
+![chinaMap](../../../images/Echarts/chinaMap.png)
