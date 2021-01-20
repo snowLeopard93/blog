@@ -34,7 +34,8 @@
     
 - 第三方组件
     - [可视化 README](guide/第三方组件/可视化/README.md)
-    - [Echarts](guide/第三方组件/可视化/Echarts.md)
+    - [Echarts入门笔记（一）](guide/第三方组件/可视化/Echarts（一）.md)
+    - [Echarts入门笔记（二）速查](guide/第三方组件/可视化/Echarts（二）.md)
     - [HighCharts](guide/第三方组件/可视化/HighCharts.md)
     - [Charts](guide/第三方组件/可视化/Charts.md)
     - [Chartjs](guide/第三方组件/可视化/Chartjs.md)
