@@ -1,28 +1,269 @@
 **Echarts常用效果速查（基于echarts3/echarts4）**
 
-如无特殊说明，设置参数均从最顶层开始。
+**（1）如无特殊说明，设置参数均从最顶层开始。**
 
-### 一、柱状图（条形图）
+**（2）如无特殊说明，未设置参数的表明该参数的设置具有通用性。**
 
-#### 1、x轴设置
+### 一、柱状图
 
-#### 2、y轴设置
+#### x轴
 
-#### 3、series设置
+**（1）显示刻度、设置刻度**
 
-### 二、折线图
+**（2）显示label、设置label**
 
-#### 1、x轴设置
+**（3）显示坐标轴名称、设置坐标轴名称**
 
-#### 2、y轴设置
+#### y轴
 
-#### 3、series设置
+**（1）显示刻度、设置刻度**
 
-### 三、饼图（环形图）
+**（2）显示label、设置label**
 
-### 四、地图
+**（3）显示坐标轴名称、设置坐标轴名称**
 
-#### 1、地图区域颜色 `geo-itemStyle` `geo-regions`
+#### series
+
+**注：** `series`支持传数组，也支持传对象
+
+**（1）显示柱状图** `xAxis-type` `yAxis-type` `series-type`
+
+```javascript
+"xAxis": [
+    {
+        "type": "category"
+    }
+],
+"yAxis": [
+    {
+        "type": "value"
+    }  
+],
+"series": [
+    {
+        "type": "bar"
+    }
+]
+```
+
+**（2）显示label、设置label**
+
+#### tooltip
+
+**（1）显示tooltip、设置tooltip**
+
+**（2）tooltip文字对齐**
+
+#### 图例
+
+**（1）显示图例、设置图例**
+
+**（2）图例位置** `legend.orient` `legend.left` `legend.right` `legend.top` `legend.bottom`
+
+```javascript
+"legend": {
+    "orient": 'vertical',
+    "left": 10,
+    "right": 10,
+    "top": 10,
+    "bottom": 10
+}
+```
+
+**（3）图例滚动显示** `legend-type`
+
+```javascript
+"legend": {
+    "type": "scroll"
+}
+```
+### 二、条形图
+
+#### x轴
+
+**（1）显示刻度、设置刻度**
+
+**（2）显示label、设置label**
+
+**（3）显示坐标轴名称、设置坐标轴名称**
+
+#### y轴
+
+**（1）显示刻度、设置刻度**
+
+**（2）显示label、设置label**
+
+**（3）显示坐标轴名称、设置坐标轴名称**
+
+#### series
+
+**（1）显示条形图** `xAxis-type` `yAxis-type` `series-type`
+
+```javascript
+"xAxis": [
+    {
+        "type": "value"
+    }
+],
+"yAxis": [
+    {
+        "type": "category"
+    }  
+],
+"series": [
+    {
+        "type": "bar"
+    }
+]
+```
+
+**（2）显示label、设置label**
+
+**（3）渐变色** `series-itemStyle-normal`
+
+```javascript
+"series": [
+    {
+        "type": "bar",
+        "itemStyle": {
+            "normal": {
+                "color": new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                    "offset": 0, color: "#0093ff" // 0% 处的颜色
+                }, {
+                   "offset": 1, color: "#00dff9" // 100% 处的颜色
+                }])
+            }
+        },
+    }
+]
+```
+
+**（4）显示圆角** `series-type` `series-itemStyle-normal-barBorderRadius`
+
+```javascript
+"series": [
+    {
+        "type": "bar",
+        "itemStyle": {
+            "normal": {
+                "barBorderRadius": [0, 10, 10, 0]
+            }
+        }
+    }
+]
+``` 
+
+#### tooltip
+
+**（1）显示tooltip、设置tooltip**
+
+#### 图例
+
+**（1）显示图例、设置图例**
+
+### 三、折线图
+
+#### x轴
+
+**（1）显示刻度、设置刻度**
+
+**（2）显示label、设置label**
+
+**（3）显示坐标轴名称、设置坐标轴名称**
+
+#### y轴
+
+**（1）显示刻度、设置刻度**
+
+**（2）显示label、设置label**
+
+**（3）显示坐标轴名称、设置坐标轴名称**
+
+#### series
+
+**（1）显示折线图** `xAxis-type` `series-type`
+
+```javascript
+"xAxis": [
+    {
+        "type": "category"
+    }
+],
+"series": [
+    {
+        "type": "line"
+    }
+]
+```
+
+**（2）显示label、设置label**
+
+**（3）渐变色** `series-type` `series-areaStyle-normal`
+
+```javascript
+"series": [
+    {
+        "type": "line",
+        "areaStyle": {
+            "normal": {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1,[{
+                    offset: 0, color: '#0d618d' // 0% 处的颜色
+                }, {
+                    offset: 1, color: '#103152' // 100% 处的颜色
+                }]
+            )
+        }
+    }
+]
+```
+**（4）圆滑曲线**
+
+```javascript
+"series": [
+    {
+        "type": "line",
+        "symbol": "none",
+        "smooth": true
+    }
+]
+```
+
+#### tooltip
+
+**（1）显示tooltip、设置tooltip**
+
+#### 图例
+
+**（1）显示图例、设置图例**
+
+### 四、饼图（环形图）
+
+#### series
+
+**（1）显示饼图** `series-type`
+
+```javascript
+"series": [
+    {
+        "type": "pie"
+    }
+]
+```
+
+**（2）显示环形图** `series-type` `series-radius`
+
+```javascript
+"series": [
+    {
+        "type": "pie",
+        "radius": ["60%", "80%"]
+    }
+]
+```
+
+### 五、地图
+
+#### 地图区域颜色 `geo-itemStyle` `geo-regions`
 
 ```javascript
 "geo": {
