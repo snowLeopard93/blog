@@ -263,7 +263,23 @@
 
 ### 五、地图
 
-#### 地图区域颜色 `geo-itemStyle` `geo-regions`
+#### 地图点位
+
+**（1）点位显示图片** `series-type` `series-symbol`
+
+```javascript
+"series": [
+    {
+        "type": 'effectScatter',
+        "symbol": "image://images/map-icon1.png",
+        "symbolSize": 30,
+    }
+]
+```
+
+#### 地图区域
+ 
+**（1）区域颜色** `geo-itemStyle` `geo-regions`
 
 ```javascript
 "geo": {
