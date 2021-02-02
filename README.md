@@ -17,6 +17,8 @@
 
 **1、[Vue](https://github.com/snowLeopard93/blog/blob/master/study/guide/Vue)**
 
+**2、[Vue项目开发](https://github.com/snowLeopard93/blog/tree/master/study/guide/Vue%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91)**
+
 #### 三、[webpack](https://github.com/snowLeopard93/blog/tree/master/study/guide/webpack)
 
 #### 四、组件、插件、工具类
