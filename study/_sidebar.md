@@ -13,7 +13,8 @@
 
 - 浏览器
     - [浏览器 README](guide/浏览器/README.md)
-    - [Chrome](guide/浏览器/Chrome.md)
+    - [Chrome（一）](guide/浏览器/Chrome（一）.md)
+    - [Chrome（二）调试](guide/浏览器/Chrome（二）调试.md)
   
 - webpack
     - [webpack README](guide/webpack/README.md)
@@ -52,8 +53,7 @@
     - [插件 README](guide/插件/README.md)
     - [下载](guide/插件/下载.md)
  
-- Chrome调试及性能优化
-    - [Chrome调试](guide/Chrome调试及性能优化/Chrome调试.md)
+- 性能优化
     - [内存泄漏](guide/Chrome调试及性能优化/内存泄漏.md)
 
 - Git
