@@ -17,6 +17,9 @@
 	- [ES6入门笔记（三）](guide/ES6/ES6入门笔记（三）.md)
 	- [ES6进阶笔记（一）](guide/ES6/ES6进阶笔记（一）.md)
     - [ES6进阶笔记（二）](guide/ES6/ES6进阶笔记（二）.md)
+
+- 浏览器
+    - [Chrome](guide/浏览器/Chrome.md)
   
 - webpack
     - [webpack README](guide/webpack/README.md)
