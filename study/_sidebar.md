@@ -54,7 +54,7 @@
     - [下载](guide/插件/下载.md)
  
 - 性能优化
-    - [内存泄漏](guide/Chrome调试及性能优化/内存泄漏.md)
+    - [内存泄漏](guide/性能优化/内存泄漏.md)
 
 - Git
     - [Git README](guide/Git/README.md)	
