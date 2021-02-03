@@ -29,17 +29,21 @@
 
 **3、momentJS**
 
-#### 五、其他
+#### 五、浏览器
+
+**1、[浏览器](https://github.com/snowLeopard93/blog/tree/master/study/guide/%E6%B5%8F%E8%A7%88%E5%99%A8)**
+
+#### 六、其他
 
 **1、[页面间通信及跨域](https://github.com/snowLeopard93/blog/blob/master/study/guide/%E5%85%B6%E4%BB%96/%E9%A1%B5%E9%9D%A2%E9%97%B4%E9%80%9A%E4%BF%A1%E5%8F%8A%E8%B7%A8%E5%9F%9F.md)**
 
-#### 六、性能优化和工具
+#### 七、性能优化和工具
 
 **1、Chrome调试及性能优化**
 
 **2、[Git](https://github.com/snowLeopard93/blog/tree/master/study/guide/Git)**
 
-#### 七、学习网站（工具）
+#### 八、学习网站（工具）
 
 **1、[前端工具](https://github.com/snowLeopard93/blog/blob/master/study/guide/%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99%EF%BC%88%E5%B7%A5%E5%85%B7%EF%BC%89/tool.md)**
 
