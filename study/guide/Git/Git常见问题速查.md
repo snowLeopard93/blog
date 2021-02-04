@@ -5,3 +5,15 @@
 **（1）确认是否是空文件夹；**
 
 如果是，则需要在文件夹下面添加文件之后，再进行`git add`操作：
+
+#### 2、`git status` 时 中文显示成一串数字
+
+![Git常见问题速查-1](../../images/Git/Git常见问题速查-1.png)
+
+**解决方法：**
+
+```
+git config --global core.quotepath false
+```
+
+![Git常见问题速查-2](../../images/Git/Git常见问题速查-2.png)
