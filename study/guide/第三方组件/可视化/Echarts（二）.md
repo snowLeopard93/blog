@@ -702,3 +702,21 @@
 **效果图**
 
 ![chinaMap](../../../images/Echarts/chinaMap.png)
+
+**（2）区域名字** `geo-label`
+
+```javascript
+"geo": {
+    "label": {
+        "normal": {
+            "show": true,
+            "color": "#fff",
+            "fontSize": 15
+        },
+        "emphasis": {
+            "show": true,
+            "color": "#fff"
+        }
+    }
+}
+```
