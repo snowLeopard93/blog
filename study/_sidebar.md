@@ -38,7 +38,9 @@
     - [Vue Test Utils](guide/Vue/Vue-Test-Utils.md)
  
 - Vue项目开发
+    - [Vue项目开发 README](guide/Vue项目开发/README.md)
     - [Vue项目开发（一）](guide/Vue项目开发/Vue项目开发（一）.md)   
+    - [Vue项目开发（二）](guide/Vue项目开发/Vue项目开发（二）.md)
     
 - 第三方组件
     - [可视化 README](guide/第三方组件/可视化/README.md)
