@@ -292,3 +292,83 @@ export default {
 **效果图：**
 
 ![vue-siderMenu-1](../../images/Vue项目开发/vue-siderMenu-1.gif)
+
+### 二、菜单与路由结合
+
+#### 1、修改路由文件，对部分路由做特殊标识
+
+**（1）用`hideInMenu: true`标识不需要显示的一级路由**
+
+**（2）用`hideChildrenInMenu: true`标识不需要显示子路由的路由** 
+
+**（3）给需要显示的路由增加`meta信息`，包括`icon`和`title`**
+
+**（4）除上述以外，约定显示`name`不为空的路由**
+
+#### 2、菜单数据从路由中动态获取
+
+```SiderMenu.vue
+getMenuData(routes = [], parentKeys = [], selectedKey) {
+    const menuData = [];
+    routes.forEach(item => {
+      if (item.name && !item.hideInMenu) {
+          this.openKeysMap[item.path] = parentKeys;
+          this.selectedKeysMap[item.path] = [selectedKey || item.path];
+          const newItem = { ...item };
+          delete newItem.children;
+          if (item.children && !item.hideChildrenInMenu) {
+            newItem.children = this.getMenuData(item.children, [
+              ...parentKeys,
+              item.path
+            ]);
+          } else {
+            this.getMenuData(
+              item.children,
+              selectedKey ? parentKeys : [...parentKeys, item.path],
+              selectedKey || item.path
+            );
+          }
+          menuData.push(newItem);
+        } else if (
+          !item.hideInMenu &&
+          !item.hideChildrenInMenu &&
+          item.children
+        ) {
+          menuData.push(
+            ...this.getMenuData(item.children, [...parentKeys, item.path])
+          );
+        }
+      });
+   return menuData;
+}
+```
+
+#### 3. 修改template
+
+```SiderMenu.vue
+<template>
+  <div>
+    <a-menu :theme="menuTheme" :selected-keys="selectedKeys" :open-keys.sync="openKeys" mode="inline">
+      <a-sub-menu v-for="firstMenu in menuData" :key="firstMenu.path">
+        <span slot="title">
+          <a-icon v-if="firstMenu.meta.icon" :type="firstMenu.meta.icon" />
+          <span>{{ firstMenu.meta.title }}</span>
+        </span>
+        <a-menu-item
+          v-for="secondMenu in firstMenu.children"
+          :key="secondMenu.path"
+          @click="
+            () => $router.push({ path: secondMenu.path, query: $route.query })
+          "
+        >
+          {{ secondMenu.meta.title }}
+        </a-menu-item>
+      </a-sub-menu>
+    </a-menu>
+  </div>
+</template>
+```
+
+**效果图：**
+
+![vue-siderMenu-2](../../images/Vue项目开发/vue-siderMenu-2.gif)
