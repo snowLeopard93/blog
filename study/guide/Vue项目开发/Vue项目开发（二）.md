@@ -372,3 +372,285 @@ getMenuData(routes = [], parentKeys = [], selectedKey) {
 **效果图：**
 
 ![vue-siderMenu-2](../../images/Vue项目开发/vue-siderMenu-2.gif)
+
+### 三、菜单权限控制
+
+#### 1、增加403页面
+
+**（1）403页面**
+
+```403.vue
+<template>
+  <div>403</div>
+</template>
+
+<script>
+export default {
+  name: "403"
+};
+</script>
+
+<style scoped></style>
+```
+
+**（2）配置403路由**
+
+```javascript
+import Forbidden from "../views/403";
+
+const routes = [
+{
+    path: "/403",
+    name: "403",
+    hideInMenu: true,
+    component: Forbidden
+  }
+]
+```
+
+#### 2、修改路由，增加权限标识
+
+通过`meta`中的`authority`进行标识。
+
+```javascript
+const routes = [
+  {
+    path: "/user",
+    hideInMenu: true,
+    component: () =>
+      import(/* webpackChunkName: "layout" */ "../layouts/UserLayout"),
+    children: [
+      {
+        path: "/user",
+        redirect: "/user/login"
+      },
+      {
+        path: "/user/login",
+        name: "login",
+        component: () =>
+          import(/* webpackChunkName: "user" */ "../views/User/Login")
+      },
+      {
+        path: "/user/register",
+        name: "register",
+        component: () =>
+          import(/* webpackChunkName: "register" */ "../views/User/Register")
+      }
+    ]
+  },
+  {
+    path: "/",
+    meta: { authority: ["user", "admin"] },
+    component: () =>
+      import(/* webpackChunkName: "layout" */ "../layouts/BasicLayout"),
+    children: [
+      {
+        path: "/",
+        redirect: "/dashboard/analysis"
+      },
+      {
+        path: "/dashboard",
+        name: "dashboard",
+        meta: {
+          icon: "dashboard",
+          title: "仪表盘"
+        },
+        component: { render: h => h("router-view") },
+        children: [
+          {
+            path: "/dashboard/analysis",
+            name: "analysis",
+            meta: {
+              title: "分析页"
+            },
+            component: () =>
+              import(
+                /* webpackChunkName: "analysis" */ "../views/Dashboard/Analysis"
+              )
+          }
+        ]
+      },
+      {
+        path: "/form",
+        name: "form",
+        meta: {
+          icon: "form",
+          title: "表单",
+          authority: ["admin"]
+        },
+        component: { render: h => h("router-view") },
+        children: [
+          {
+            path: "/form/basic-form",
+            name: "basicForm",
+            meta: {
+              title: "基础表单"
+            },
+            component: () =>
+              import(/* webpackChunkName: "form" */ "../views/Forms/BasicForm")
+          },
+          {
+            path: "/form/step-form",
+            name: "stepForm",
+            meta: {
+              title: "分步表单"
+            },
+            hideChildrenInMenu: true,
+            component: () =>
+              import(
+                /* webpackChunkName: "form" */ "../views/Forms/StepForm/index"
+              ),
+            children: [
+              {
+                path: "/form/step-form",
+                redirect: "/form/step-form/info"
+              },
+              {
+                path: "/form/step-form/info",
+                name: "info",
+                component: () =>
+                  import(
+                    /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step1"
+                  )
+              },
+              {
+                path: "/form/step-form/confirm",
+                name: "confirm",
+                component: () =>
+                  import(
+                    /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step2"
+                  )
+              },
+              {
+                path: "/form/step-form/result",
+                name: "result",
+                component: () =>
+                  import(
+                    /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step3"
+                  )
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: "/403",
+    name: "403",
+    hideInMenu: true,
+    component: Forbidden
+  },
+  {
+    path: "*",
+    name: "404",
+    hideInMenu: true,
+    component: NotFound
+  }
+];
+```
+
+#### 4、增加一个权限认证js
+
+```javascript
+export function getCurrentAuthority() {
+  return ["admin"];
+}
+
+export function check(authority) {
+  const current = getCurrentAuthority();
+  return current.some(item => authority.includes(item));
+}
+
+export function isLogin() {
+  const current = getCurrentAuthority();
+  return current && current[0] !== "guest";
+}
+```
+
+#### 5、增加路由守卫的判断
+
+```javascript
+import findLast from "lodash/findLast";
+import { check, isLogin } from "../utils/auth";
+import { notification } from "ant-design-vue";
+
+router.beforeEach((to, from, next) => {
+  if (to.path !== from.path) {
+    NProgress.start();
+  }
+  const record = findLast(to.matched, record => record.meta.authority);
+  if (record && !check(record.meta.authority)) {
+    if (!isLogin() && to.path !== "/user/login") {
+      next({
+        path: "/user/login"
+      });
+    } else if (to.path !== "/403") {
+      notification.error({
+        message: "403",
+        description: "你没有权限访问，请联系管理员！"
+      });
+      next({
+        path: "/403"
+      });
+    }
+
+    NProgress.done();
+  }
+  next();
+});
+```
+
+#### 6、过滤菜单数据
+
+```SiderMenu.vue
+<script>
+import { check } from "../utils/auth";
+export default {
+  name: "SiderMenu",
+  methods: {
+    // 从路由中获取菜单
+    getMenuData(routes = [], parentKeys = [], selectedKey) {
+      const menuData = [];
+      for (let item of routes) {
+        if (item.meta && item.meta.authority && !check(item.meta.authority)) {
+          break;
+        }
+        if (item.name && !item.hideInMenu) {
+          this.openKeysMap[item.path] = parentKeys;
+          this.selectedKeysMap[item.path] = [selectedKey || item.path];
+          const newItem = { ...item };
+          delete newItem.children;
+          if (item.children && !item.hideChildrenInMenu) {
+            newItem.children = this.getMenuData(item.children, [
+              ...parentKeys,
+              item.path
+            ]);
+          } else {
+            this.getMenuData(
+              item.children,
+              selectedKey ? parentKeys : [...parentKeys, item.path],
+              selectedKey || item.path
+            );
+          }
+          menuData.push(newItem);
+        } else if (
+          !item.hideInMenu &&
+          !item.hideChildrenInMenu &&
+          item.children
+        ) {
+          menuData.push(
+            ...this.getMenuData(item.children, [...parentKeys, item.path])
+          );
+        }
+      }
+      return menuData;
+    }
+  }
+};
+</script>
+```
+
+**效果图：**
+
+![vue-authority-1](../../images/Vue项目开发/vue-authority-1.gif)
