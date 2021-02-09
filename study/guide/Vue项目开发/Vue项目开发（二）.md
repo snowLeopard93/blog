@@ -654,3 +654,90 @@ export default {
 **效果图：**
 
 ![vue-authority-1](../../images/Vue项目开发/vue-authority-1.gif)
+
+### 四、权限组件
+
+#### 1、权限组件
+
+使用**函数式组件**的写法：
+
+```Authorized.vue
+<script>
+import { check } from "../utils/auth";
+export default {
+  functional: true,
+  props: {
+    authority: {
+      type: Array,
+      required: true
+    }
+  },
+  render(h, context) {
+    const { props, scopedSlots } = context;
+    return check(props.authority) ? scopedSlots.default() : null;
+  }
+};
+</script>
+
+<style scoped></style>
+```
+
+
+#### 2、全局注册并使用
+
+**（1）全局注册**
+
+```main.js
+import Authorized from "./components/Authorized";
+
+Vue.component("Authorized", Authorized);
+``` 
+
+**（2）使用**
+
+
+```BasicLayout.vue
+<Authorized :authority="['admin']">
+    <SettingDrawer />
+</Authorized>
+```
+
+### 五、权限指令
+
+#### 1、权限指令
+
+```directives/auth.js
+import { check } from "../utils/auth";
+
+function install(Vue, options = {}) {
+  Vue.directive(options.name || "auth", {
+    inserted(el, binding) {
+      if (!check(binding.value)) {
+        el.parentNode && el.parentNode.removeChild(el);
+      }
+    }
+  });
+}
+
+export default { install };
+```
+
+#### 2、全局注册并使用
+
+**（1）全局注册**
+
+```main.js
+import Auth from "./directives/auth";
+Vue.use(Auth);
+```
+
+**（2）使用**
+
+```BasicLayout.vue
+<a-icon
+    v-auth="['admin']"
+    class="trigger"
+    :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+    @click="collapsed = !collapsed"
+></a-icon>
+```
