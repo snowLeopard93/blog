@@ -2,11 +2,11 @@
 
 #### [Vue项目开发（一）.md](guide/Vue项目开发/Vue项目开发（一）.md)
 
-**关键词：** `vue-cli4`、`路由配置` `ant-design-vue` `基本布局`
+**关键词：** `vue-cli4` `路由配置` `ant-design-vue` `基本布局`
 
 #### [Vue项目开发（二）.md](guide/Vue项目开发/Vue项目开发（二）.md)
 
-**关键词：** `菜单`、`路由`、`权限`
+**关键词：** `菜单` `路由` `权限`
 
 #### [Vue项目开发（三）.md](guide/Vue项目开发/Vue项目开发（三）.md)
 
