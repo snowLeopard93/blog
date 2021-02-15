@@ -42,6 +42,7 @@
     - [Vue项目开发（一）](guide/Vue项目开发/Vue项目开发（一）.md)   
     - [Vue项目开发（二）](guide/Vue项目开发/Vue项目开发（二）.md)
     - [Vue项目开发（三）](guide/Vue项目开发/Vue项目开发（三）.md)
+    - [Vue项目开发（四）](guide/Vue项目开发/Vue项目开发（四）.md)
     
 - 第三方组件
     - [可视化 README](guide/第三方组件/可视化/README.md)
