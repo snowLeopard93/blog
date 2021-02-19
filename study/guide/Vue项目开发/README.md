@@ -16,6 +16,10 @@
 
 **关键词：** `ant-design-vue` `表单`
 
+#### [Vue项目开发（五）.md](guide/Vue项目开发/Vue项目开发（五）.md)
+
+**关键词：** `ant-design-vue` `图标` `iconFont`
+
 **推荐：**
 
 [vue-mall](https://github.com/snowLeopard93/vue-mall)
@@ -23,3 +27,5 @@
 [Vue开发实战-从0开始搭建大型Vue项目](https://time.geekbang.org/course/intro/100024601)
 
 [ant-design-vue Form表单](https://www.antdv.com/components/form-cn/)
+
+[vue-cli 链式操作](https://cli.vuejs.org/zh/guide/webpack.html#%E9%93%BE%E5%BC%8F%E6%93%8D%E4%BD%9C-%E9%AB%98%E7%BA%A7)
