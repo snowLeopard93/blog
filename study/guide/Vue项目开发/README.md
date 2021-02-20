@@ -18,7 +18,7 @@
 
 #### [Vue项目开发（五）.md](guide/Vue项目开发/Vue项目开发（五）.md)
 
-**关键词：** `ant-design-vue` `图标` `iconFont`
+**关键词：** `ant-design-vue` `图标` `iconFont` `less-loader` `国际化`
 
 **推荐：**
 

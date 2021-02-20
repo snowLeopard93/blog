@@ -166,3 +166,114 @@ module.exports = {
 ```
 
 **注：** 通过`window.less.modifyVars({"@primary-color": "red"})`动态切换主题不生效，暂未找到原因。
+
+### 三、国际化
+
+#### 1、引入语言包
+
+**（1）引入`ConfigProvider`**
+```main.js
+import {
+  ConfigProvider
+} from "ant-design-vue";
+
+Vue.use(ConfigProvider);
+```
+
+**（2）修改App.vue**
+
+```App.vue
+<template>
+  <div id="app">
+    <a-config-provider :locale="locale">
+      <router-view />
+    </a-config-provider>
+  </div>
+</template>
+<script>
+import zhCN from "ant-design-vue/lib/locale-provider/zh_CN";
+import enUS from "ant-design-vue/lib/locale-provider/en_US";
+import moment from "moment";
+export default {
+  data() {
+    return {
+      locale: zhCN
+    };
+  },
+  watch: {
+    "$route.query.locale": function(val) {
+      this.locale = val === "enUS" ? enUS : zhCN;
+      moment.locale(val === "enUS" ? "en" : "zh-cn");
+    }
+  }
+};
+</script>
+<style lang="less"></style>
+```
+
+#### 2、切换语言
+
+```Header.vue
+<template>
+  <div :class="[`header-theme-${headerTheme}`]" class="header">
+    <div class="header-locale">
+      <a-dropdown>
+        <a class="ant-dropdown-link" @click="e => e.preventDefault()">
+          <a-icon type="global" />
+        </a>
+        <a-menu
+          slot="overlay"
+          @click="changeLocale"
+          :selected-keys="[$route.query.locale || 'zhCN']"
+        >
+          <a-menu-item key="zhCN">
+            中文
+          </a-menu-item>
+          <a-menu-item key="enUS">
+            英文
+          </a-menu-item>
+        </a-menu>
+      </a-dropdown>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Header",
+  props: {
+    headerTheme: {
+      type: String,
+      default: "dark"
+    }
+  },
+  methods: {
+    changeLocale({ key }) {
+      this.$router.push({ query: { ...this.$route.query, locale: key } });
+    }
+  }
+};
+</script>
+
+<style scoped>
+.header {
+  float: right;
+  width: calc(100% - 256px);
+}
+
+.header-theme-dark {
+  color: #ffffff;
+  background: #001529;
+}
+
+.header-theme-light {
+  color: #001529;
+  background: #ffffff;
+}
+
+.header-locale {
+  float: right;
+  margin-right: 30px;
+}
+</style>
+```
