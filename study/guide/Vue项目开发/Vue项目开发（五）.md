@@ -169,7 +169,7 @@ module.exports = {
 
 ### 三、国际化
 
-#### 1、引入语言包
+#### 1、ant-design 组件国际化
 
 **（1）引入`ConfigProvider`**
 ```main.js
@@ -211,7 +211,7 @@ export default {
 <style lang="less"></style>
 ```
 
-#### 2、切换语言
+**（3）切换语言**
 
 ```Header.vue
 <template>
@@ -276,4 +276,82 @@ export default {
   margin-right: 30px;
 }
 </style>
+```
+
+#### 2、本地资源国际化
+
+**（1）本地资源国际化js**
+
+```locale/zhCN.js
+export default {
+  "app.dashboard.analysis.timeLabel": "时间"
+};
+```
+
+```locale/enUS.js
+export default {
+  "app.dashboard.analysis.timeLabel": "Time"
+};
+```
+
+**（2）引入vue-i18n**
+
+```
+npm i vue-i18n --save
+```
+
+```main.js
+import VueI18n from "vue-i18n";
+
+import zhCN from "./locale/zhCN";
+import enUS from "./locale/enUS";
+import queryString from "query-string";
+
+const i18n = new VueI18n({
+  locale: queryString.parse(location.search).locale || "zhCN",
+  messages: {
+    zhCN: { message: zhCN },
+    enUS: { message: enUS }
+  }
+});
+
+new Vue({
+  router,
+  store,
+  i18n,
+  render: h => h(App)
+}).$mount("#app");
+```
+
+**（3）使用**
+
+```Analysis.vue
+<template>
+  <div>
+    {{ $t("message")["app.dashboard.analysis.timeLabel"] }}
+    <a-date-picker></a-date-picker>
+  </div>
+</template>
+```
+
+**（4）切换语言**
+
+```Header.vue
+<script>
+export default {
+  name: "Header",
+  props: {
+    headerTheme: {
+      type: String,
+      default: "dark"
+    }
+  },
+  methods: {
+    changeLocale({ key }) {
+      this.$router.push({ query: { ...this.$route.query, locale: key } });
+      this.$i18n.locale = key;
+    }
+  }
+};
+</script>
 ```
