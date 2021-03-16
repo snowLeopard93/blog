@@ -26,3 +26,21 @@
 [chrome浏览器跨域Cookie的SameSite问题导致访问iframe内嵌页面异常](https://blog.csdn.net/yhyc812/article/details/108623844)
 
 [Cookie 的 SameSite 属性](http://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html)
+
+#### 2. 播放声音
+
+**关键词：** `audio` 
+
+**问题描述：**
+
+使用`audio`标签时，无法自动播放声音，`console`控制台有如下提示。
+
+![audio-play](../../images/Chrome/浏览器-Chrome-3.png)
+
+**原因：**
+
+`Chrome`升级之后，关闭了自动播放声音的设置，需要有用户交互时才能播放。
+
+**问题处理：**
+
+复制一个Chrome浏览器的快捷方式，右键属性，找到“目标”设置，在`Chrome.exe`后面加一个空格之后，添加`--autoplay-policy=no-user-gesture-required`，重启浏览器之后即可。
