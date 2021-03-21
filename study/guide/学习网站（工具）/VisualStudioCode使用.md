@@ -27,7 +27,7 @@ ctrl-shift-f
 
 ![代码高亮显示-1](../../images/VisualStudioCode使用/VisualStudioCode-1.png)
 
-### 四、问题处理
+### 三、问题处理
 
 **1、无法执行脚本**
 
