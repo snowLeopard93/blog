@@ -1,7 +1,7 @@
 
-### 一、ant-design-vue Form表单 前置
+### 一、Form表单 前置
 
-#### 1、引入ant-design-vue Form
+#### 1、引入Form
 
 ```main.js
 import {
@@ -261,4 +261,8 @@ export default {
 </script>
 ```
 
-### 三、ant-design-vue FormModel 表单前置
+### 三、FormModel表单 前置
+
+**参考：**
+
+[ant-design-vue Form表单](https://www.antdv.com/components/form-cn)

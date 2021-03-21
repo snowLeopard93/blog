@@ -83,4 +83,5 @@
     
 - 学习网站（工具）
     - [前端工具](guide/学习网站（工具）/tool.md)
+    - [VisualStudioCode使用](guide/学习网站（工具）/VisualStudioCode使用.md)
 ```
