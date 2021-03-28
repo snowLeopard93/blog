@@ -54,6 +54,7 @@
     - [Charts](guide/第三方组件/可视化/Charts.md)
     - [Chartjs](guide/第三方组件/可视化/Chartjs.md)
     - [可视化组件对比](guide/第三方组件/可视化/可视化组件对比.md)
+    - [高德地图](guide/第三方组件/地图/高德地图.md)
  
 - 插件
     - [插件 README](guide/插件/README.md)
