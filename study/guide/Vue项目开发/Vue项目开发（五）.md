@@ -28,6 +28,40 @@ export default {
 </script>
 ```
 
+**修改icon颜色：**
+
+**第一步：在`iconfont.cn`上批量去色**
+
+![iconFont批量去色](../../images/Vue项目开发/vue-iconfont-1.png)
+
+**第二步：在初始化`IconFont`的时候传入一个新的类名**
+
+```main.js
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_2376320_22s4zik6wfl.js", // 在 iconfont.cn 上生成
+  // 额外属性
+  extraCommonProps: {
+    // class
+    class: "icon"
+  }
+});
+Vue.component("IconFont", IconFont);
+```
+
+**第三步：添加`icon`样式**
+
+```css
+.icon {
+  color: #1da57a;
+  vertical-align: -0.25em;
+}
+```
+
+**效果图：**
+
+![修改icon颜色](../../images/Vue项目开发/vue-iconfont-2.png)
+
+
 #### 3、本地资源（非svg）
 
 ```vue
