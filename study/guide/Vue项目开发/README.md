@@ -22,7 +22,7 @@
 
 **推荐：**
 
-[vue-mall](https://github.com/snowLeopard93/vue-mall)
+[vue-mall实战](https://github.com/snowLeopard93/vue-mall)
 
 [Vue开发实战-从0开始搭建大型Vue项目](https://time.geekbang.org/course/intro/100024601)
 
