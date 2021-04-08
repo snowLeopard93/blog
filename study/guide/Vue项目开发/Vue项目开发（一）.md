@@ -325,7 +325,7 @@ const router = new VueRouter({
 </template>
 ```
 
-### 五、抽屉和主题
+### 五、抽屉
 
 抽屉效果使用`ant-design-vue`里的[Drawer抽屉组件](https://www.antdv.com/components/drawer-cn/#components-drawer)
 
@@ -415,9 +415,11 @@ const router = new VueRouter({
 </template>
 ```
 
-#### 4、修改主题
+### 六、主题
 
-**（1） 监听`<a-radio-group>` 的 `change`，修改url上的参数，丢到`$router`**
+#### 1、通过获取url参数修改主题
+
+**1.1 监听`<a-radio-group>` 的 `change`，修改url上的参数，丢到`$router`**
 
 **部分代码如下：**
 
@@ -441,7 +443,7 @@ export default {
 </script>
 ```
 
-**（2）通过计算属性更新主题**
+**1.2 通过计算属性更新主题**
 
 ```BasicLayOut.vue
 <script>
@@ -475,6 +477,101 @@ export default {
 </script>
 ```
 
+#### 2、通过`localStorge`和`store`修改主题
+
+**注：前置知识：`store`的基本使用**
+
+**2.1 将theme放到`store.js`中管理**
+
+```src/store/modules/system.js
+// 从localStorage获取，如果没有，则设置一个默认的
+let theme = localStorage.getItem("vue-mall-theme");
+if (!theme) {
+  localStorage.setItem("vue-mall-theme", "light");
+}
+
+export default {
+  namespaced: true,
+  state: {
+    // 主题
+    theme: localStorage.getItem("vue-mall-theme")
+  },
+  mutations: {
+    // 用来切换主题，同时将新的值更新到localStorage里面
+    changeTheme(state, theme) {
+      state.theme = theme;
+      localStorage.setItem("vue-mall-theme", theme);
+    }
+  },
+  // 用于返回当前主题的值
+  getters: {
+    theme: state => {
+      return state.theme;
+    }
+  },
+  actions: {},
+  modules: {}
+};
+```
+
+**2.2 在`BasicLayout.vue`中获取主题**
+
+```src/layouts/BasicLayout.vue
+<script>
+import { mapState } from "vuex";
+
+export default {
+  name: "BasicLayout",
+  // 此处使用 mapState 来获取store中存放的值
+  computed: mapState({
+    theme: state => state.system.theme
+  }
+};
+</script>
+```
+
+**2.3 在`Header.vue`中切换主题**
+
+```
+<template>
+  <div class="header" :class="[`header-theme-${headerTheme}`]">
+    <div class="header-theme" title="主题切换">
+      <IconFont
+        type="icon-switch-on"
+        style="font-size: 30px;"
+        v-show="headerTheme === 'dark'"
+        @click="changeTheme('light')"
+      />
+      <IconFont
+        type="icon-switch-off"
+        style="font-size: 30px;"
+        v-show="headerTheme === 'light'"
+        @click="changeTheme('dark')"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Header",
+  // props表示用来获取从父组件中传入的值
+  props: {
+    headerTheme: {
+      type: String,
+      default: "dark"
+    }
+  },
+  methods: {
+    // 切换主题
+    changeTheme(theme) {
+      // 通过 $store的commit方法，将值提交给store
+      this.$store.commit("system/changeTheme", theme);
+    }
+  }
+};
+</script>
+```
 
 **推荐：**
 
