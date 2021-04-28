@@ -171,6 +171,17 @@
 
 **（3）显示坐标轴名称、设置坐标轴名称**
 
+**（4）刻度与值对齐** `xAxis-type` `xAxis-boundaryGap`
+
+```javascript
+"xAxis": [
+    {
+        "type": "category",
+        "boundaryGap": false
+    }
+]
+```
+
 #### y轴
 
 **（1）显示刻度、设置刻度**
