@@ -9,6 +9,10 @@ ctrl-p
 
 ctrl-shift-f
 
+#### 3、定位到某一行
+
+ctrl-g
+
 
 
 ### 二、常用设置
