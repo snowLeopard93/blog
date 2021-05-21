@@ -184,7 +184,27 @@
 
 #### y轴
 
-**（1）显示刻度、设置刻度**
+**（1）显示刻度、设置刻度** `yAxis-axisLabel` `yAxis-splitLine`
+
+```javascript
+"yAxis": [
+    {
+        "axisLabel": {
+            "show": true,
+            "textStyle": {
+                "color": "#5993db"
+            }
+        },
+        "splitLine": {
+            "show": true,
+            "lineStyle": {
+                "color": "#1f447a", // 坐标轴颜色
+                "type": "dashed" // 坐标轴刻度线显示类型：dashed 表示虚线
+            }
+        }
+    }
+]
+```
 
 **（2）显示label、设置label**
 
