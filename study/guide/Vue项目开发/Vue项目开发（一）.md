@@ -1,5 +1,5 @@
 
-本部分主要介绍使用`vue-cli4`快速搭建vue项目及依赖安装、路由配置、基本布局和主题切换等内容。
+本部分主要介绍使用`vue-cli4`快速搭建vue项目及依赖安装、基本布局和主题切换等内容。
 
 ### 一、项目框架搭建
 
@@ -82,201 +82,7 @@ import { Button } from "ant-design-vue";
 Vue.use(Button);
 ```
 
-### 三、配置路由
-
-#### 1、引入 `VueRouter`
-
-```javascript
-import VueRouter from "vue-router";
-Vue.use(VueRouter);
-```
-
-**注：** 使用`vue-cli`快速创建的vue项目，配置路由的js已经自动生成，路径为`src/router/index.js`
-
-#### 2、定义路由
-
-**（1）定义父子路由**
-
-```javascript
-{
-    path: "/form/step-form",
-    name: "stepForm",
-    children: [
-        {
-            path: "/form/step-form",
-            redirect: "/form/step-form/info"
-        },
-        {
-            path: "/form/step-form/info",
-            name: "info"
-        },
-        {
-            path: "/form/step-form/confirm",
-            name: "confirm",
-        },
-        {
-            path: "/form/step-form/result",
-            name: "result"
-        }
-    ]
-}
-```
-
-**（2）动态加载组件**
-
-使用如下语法，其中`webpackChunkName`用于动态打包时使用。
- 
-```javascript
-component: () =>
-    import(
-        /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step3"
-    )
-}
-``` 
-
-**示例：**
-
-```javascript
-{
-    path: "/form/step-form/result",
-    name: "result",
-    component: () =>
-        import(
-            /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step3"
-        )
-}
-```
-
-**（3）静态加载组件**
-
-```javascript
-import NotFound from "../views/404";
-
-const routes = [
-    {
-        path: "*",
-        name: "404",
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: NotFound
-    }
-]
-```
-
-**（4）添加页面加载时的进度条效果**
-
-进度条插件使用[NProgress](https://ricostacruz.com/nprogress/)：
-
-```javascript
-import NProgress from "nprogress";
-import "nprogress/nprogress.css";
-
-router.beforeEach((to, from, next) => {
-  if(to.path !== from.path) {
-    NProgress.start();
-  }
-  next();
-});
-
-router.afterEach(() => {
-  NProgress.done();
-});
-```
-
-#### 3、示例
-
-**部分代码如下：**
-
-```javascript
-const routes = [
-  {
-    path: "/",
-    component: () =>
-      import(/* webpackChunkName: "layout" */ "../layouts/BasicLayout"),
-    children: [
-      {
-        path: "/",
-        redirect: "/dashboard/analysis"
-      },
-      {
-        path: "/dashboard",
-        name: "dashboard",
-        component: { render: h => h("router-view") },
-        children: [
-          {
-            path: "/dashboard/analysis",
-            name: "analysis",
-            component: () =>
-              import(
-                /* webpackChunkName: "analysis" */ "../views/Dashboard/Analysis"
-              )
-          }
-        ]
-      },
-      {
-        path: "/form",
-        name: "form",
-        component: { render: h => h("router-view") },
-        children: [
-          {
-            path: "/form/basic-form",
-            name: "basicForm",
-            component: () =>
-              import(/* webpackChunkName: "form" */ "../views/Forms/BasicForm")
-          },
-          {
-            path: "/form/step-form",
-            name: "stepForm",
-            component: () =>
-              import(
-                /* webpackChunkName: "form" */ "../views/Forms/StepForm/index"
-              ),
-            children: [
-              {
-                path: "/form/step-form",
-                redirect: "/form/step-form/info"
-              },
-              {
-                path: "/form/step-form/info",
-                name: "info",
-                component: () =>
-                  import(
-                    /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step1"
-                  )
-              },
-              {
-                path: "/form/step-form/confirm",
-                name: "confirm",
-                component: () =>
-                  import(
-                    /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step2"
-                  )
-              },
-              {
-                path: "/form/step-form/result",
-                name: "result",
-                component: () =>
-                  import(
-                    /* webpackChunkName: "form" */ "../views/Forms/StepForm/Step3"
-                  )
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-];
-
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
-});
-```
-
-### 四、基本布局
+### 三、基本布局
 
 布局使用`ant-design-vue`里的[Layout组件](https://www.antdv.com/components/layout/#Layout)
 
@@ -325,7 +131,7 @@ const router = new VueRouter({
 </template>
 ```
 
-### 五、抽屉
+### 四、抽屉
 
 抽屉效果使用`ant-design-vue`里的[Drawer抽屉组件](https://www.antdv.com/components/drawer-cn/#components-drawer)
 
@@ -415,7 +221,7 @@ const router = new VueRouter({
 </template>
 ```
 
-### 六、主题
+### 五、主题
 
 #### 1、通过获取url参数修改主题
 
