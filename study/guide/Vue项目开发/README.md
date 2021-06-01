@@ -2,7 +2,7 @@
 
 #### [Vue项目开发（一）.md](guide/Vue项目开发/Vue项目开发（一）.md)
 
-**关键词：** `vue-cli4` `路由配置` `ant-design-vue` `基本布局`
+**关键词：** `vue-cli4` `ant-design-vue` `基本布局`
 
 #### [Vue项目开发（二）.md](guide/Vue项目开发/Vue项目开发（二）.md)
 
@@ -19,6 +19,14 @@
 #### [Vue项目开发（五）.md](guide/Vue项目开发/Vue项目开发（五）.md)
 
 **关键词：** `ant-design-vue` `图标` `iconFont` `less-loader` `国际化`
+
+#### [Vue项目开发（六）.md](guide/Vue项目开发/Vue项目开发（六）.md)
+
+**关键词：** `构建打包`
+
+#### [Vue项目开发加餐一（路由）.md](guide/Vue项目开发/Vue项目开发加餐一（路由）.md)
+
+**关键词：** `路由`
 
 **推荐：**
 
