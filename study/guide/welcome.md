@@ -56,6 +56,7 @@
     - [Vue项目开发（五）](guide/Vue项目开发/Vue项目开发（五）.md)
     - [Vue项目开发（六）](guide/Vue项目开发/Vue项目开发（六）.md)
     - [Vue项目开发加餐一（路由）](guide/Vue项目开发/Vue项目开发加餐一（路由）.md)
+    - [Vue项目踩坑总结](guide/Vue项目开发/Vue项目踩坑总结.md)
     
 - 第三方组件
     - [可视化 README](guide/第三方组件/可视化/README.md)
