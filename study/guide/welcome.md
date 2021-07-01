@@ -65,6 +65,7 @@
     - [HighCharts](guide/第三方组件/可视化/HighCharts.md)
     - [Charts](guide/第三方组件/可视化/Charts.md)
     - [Chartjs](guide/第三方组件/可视化/Chartjs.md)
+    - [antV-X6](guide/第三方组件/可视化/antV-X6.md)
     - [可视化组件对比](guide/第三方组件/可视化/可视化组件对比.md)
     - [高德地图](guide/第三方组件/地图/高德地图.md)
  
