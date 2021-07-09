@@ -89,6 +89,6 @@
     - [日期处理工具类](guide/util/0.日期处理工具类.md)
     
 - 学习网站（工具）
-    - [前端工具](guide/学习网站（工具）/tool.md)
+    - [工具](guide/学习网站（工具）/tool.md)
     - [VisualStudioCode使用](guide/学习网站（工具）/VisualStudioCode使用.md)
 ```
